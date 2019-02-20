@@ -1,23 +1,118 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Assignment 1</title>
-</head>
-
 <body>
-            <h1> Hello, I am practicing Javascript.
-            </h1>
-            <p>A typical arithmetic operation takes two numbers and produces a new number.</p>
+
+<h1>Assignment 1 - Practicing Javascript!</h1>
+  
+<h2>Function</h2>
+
+<p>This example shows the function taking the quotient of 2 numbers</p>
 
 <p id="demo"></p>
 
 <script>
-var x = blue
-var y = yellow
-
-document.getElementById("demo").innerHTML = x + y;
+function myFunction(p1, p2) {
+  return p1 / p2;
+}
+document.getElementById("demo").innerHTML = myFunction(20000, 3.5);
 </script>
-            
-</body>
+  <br>
+  
+  
+<h2>Array</h2>
 
-</html>
+<p id="colors"> This example lists colors!</p>
+
+<script>
+var colors = ["Blue", "Purple", "Orange", "Yellow", "Pink"];
+document.getElementById("colors").innerHTML = Colors;
+</script>
+  
+  <br>
+  
+<h2>Object</h2>
+
+<p id="place"> I am describing an object in this example</p>
+
+<script>
+// Create an object:
+var place = {Name:"Iowa State", age:161};
+// Display some data from the object:
+document.getElementById("place").innerHTML =
+place.Name + " is " + person.age + " years old.";
+</script>
+ 
+<br>
+  
+  
+<h2>Loop</h2>
+
+<p id="icecreamflavors"></p>
+
+<script>
+var icecreamflavors = ["Vanilla", "Chocolate", "Strawberry", "Pistachio", "Cookies N' Cream"];
+var text = "";
+var i;
+for (i = 0; i < icecreamflavors.length; i++) {
+  text += icecreamflavors[i] + "<br>";
+}
+document.getElementById("icecreamflavors").innerHTML = text;
+</script>
+  
+<br>
+  
+  
+  
+  <h2>If Then Or Case</h2>
+
+<p id="words">Did you know that sea lions have no natural predators?</p>
+
+<script>
+if (new words().getHours() < 12) {
+  document.getElementById("words").innerHTML = "Did you know that sea lions have no natural predators?";
+}
+</script>
+  
+   <br>
+  
+  
+  
+  <h2>Button</h2>
+  
+  <strong>Which is your favorite University?</strong><br>
+
+<form>
+  <input type="radio" name="place" value="dog" checked> Iowa State<br>
+  <input type="radio" name="place" value="cat"> University of Iowa<br>
+</form> 
+  
+  <br>
+  
+ <h2>Output of the input</h2>
+   
+  <strong>Type in your name!</strong><br>
+
+  Name: <input 
+  type="text" 
+  id="TypeName" 
+  onchange="changeFunction(this.value)">
+  <br><br>
+
+  
+<div id="display"></div>
+ 
+  <br>
+  
+ <h2>Two user input fields</h2>
+  
+  <strong>What is your favorite ISU sports team?</strong><br>
+
+<input type="checkbox" name="characterisitc" value="basketball">basketball<br>
+<input type="checkbox" name="characteristic" value="football">football <br>
+<input type="checkbox" name="characterisitc" value="volleyball">volleyball<br>
+  <input type="checkbox" name="characteristic" value="other">other 
+  
+  <br>
+
+</body>
+</html> 
