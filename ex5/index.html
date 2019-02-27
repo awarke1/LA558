@@ -33,16 +33,16 @@
     <div id='map'></div>
 
   <br>
-    Pan to <a href="javascript:sadra()">Sadra, Fars</a><br>
+    Pan to <a href="javascript: Ames()">Ames, Iowa</a><br>
 
   
     <script>
-        var map = L.map('map').setView([29.616667,  52.533333], 15);
+        var map = L.map('map').setView([41.8781, -87.6298], 15);
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
         
-        L.marker([29.614152, 52.483988]).addTo(map)
+        L.marker([41.8781, -87.6298]).addTo(map)
             .bindPopup("Abbey's Hometown :)")
             .openPopup();
    
@@ -61,9 +61,9 @@
         }
         
         //----------Links below the Map----------
-        //Pan to Sadra
-        function sadra() {
-            map.panTo(new L.LatLng(29.8069, 52.5036));
+        //Pan to Ames
+        function Ames() {
+            map.panTo(new L.LatLng(42.0308, 93.6319));
         }
     </script>
     <p id="zoomOut">
@@ -71,7 +71,7 @@
     </p>
       
  <p id="button">
-    <button onclick="button()">Visit Qalat, Fars</button>
+    <button onclick="button()">Visit Des Moines, Iowa</button>
     
     </p> 
     
@@ -82,9 +82,9 @@
             map.setZoom(8);
         };
         
-        //Qalat Fars
+        //Des Moines
        function button(){
-            map.setView(new L.LatLng(29.820556, 52.33), 15);
+            map.setView(new L.LatLng(41.5868, 93.6250), 15);
         };
         
     </script>
