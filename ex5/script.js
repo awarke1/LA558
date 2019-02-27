@@ -9,11 +9,11 @@ L.marker([41.8781, -87.6298]).addTo(map)
    .openPopup();
 
 var cities = [
-    [44.4280, 110.5885, "Yellowstone National Park, WY"],
-	[68.4314, 143.6910, "Arctic Refuge, AK"],
-	[37.8651, 119.5383, "Yosemite NAtional Park, CA"],
-	[37.2982, 113.0263, "Zion National Park, Utah"],
-    [40.3428, 105.6836, "Istanbul, Rocky Mountain National Park, CO"]
+    [41.9211, 87.6335, "Lincoln Park"],
+	[41.8676, 87.6140,"Shedd Aquarium"],
+	[41.8826, 87.6226, "Millenium Park"],
+	[41.8917, 87.6043, "Navy Pier"],
+    [41.8663, 87.6170, "The Field Museum"]
 ];
 
 for (var i = 0; i < cities.length; i++) {
@@ -30,6 +30,6 @@ function ames() {
 	map.panTo(new L.LatLng(42.028160, -93.649329));
 }
 
-function anoKamila() {
-	map.panTo(new L.LatLng(41.058699, 23.427364));
+function Des Moines() {
+	map.panTo(new L.LatLng(41.5868, 93.6250));
 }
