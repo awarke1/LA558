@@ -27,7 +27,7 @@
 
 <body>
     <h1>"Exercise 6"</h1>
-<h2>ByAbbey Warke</h2>
+<h2>By Abbey Warke</h2>
     
     <div id='map'></div>
 
@@ -37,7 +37,7 @@
 
 
     <script>
-       var map = L.map('map', {minZoom:15}).setView([42.0218, -93.6473], 15.5);
+       var map = L.map('map', {minZoom:15}).setView([42.0266, -93.6465], 20.5);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
@@ -49,7 +49,7 @@
         
         var polyline = L.polyline(coordinates, {color: 'red', opacity:0.80}).addTo(map);
 polyline.bindTooltip("Getting from campus town to Ames Laboratory");
-var circle1 = L.circle([42.0210, -93.6490], {radius:75, color: '#4B0082e', weight: 1}).addTo(map);
+var circle1 = L.circle([42.0210, -93.6490], {radius:75, color: '#4B0082', weight: 1}).addTo(map);
 var circle2 = L.circle([42.0300, -93.6483], {radius:75, color: '#4B0082', weight: 1}).addTo(map);
     </script>
   <p id='public'></p>  
