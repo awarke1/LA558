@@ -1,34 +1,101 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="description" content="LA 458/558 12a Leaflet circl vs circle markers - 2018">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Leaflet circl vs circle markers</title>
-	
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-	
-<script src="https://code.jquery.com/jquery-2.2.4.js">
-	var map = L.map('map').setView([42.0, -93.634], 12);
+   
+    <meta charset="utf-8">
+  
+    <title>Exercise 6: Reperesenting Data on a Map!</title>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+   <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>	
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+    <style>
+        
+        body{background-color:gold}
+        h1{color: black; font-family: inherit; text-align: center; font-size: 35px}
+        h2{color: black; font-family: inherit; text-align: center; font-size: 20px}
+        p{color: black; font-family: sans-serif; font-size: 15px; text-align:left}
+        
+        #map {
+            width: 500px;
+            height: 400px;
+        }
+    </style>
 
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-	</script>
-	
 
-//this will add one traditional marker
-L.marker([42.0218, -93.6473]).addTo(map)
-   .bindPopup("Abbey's Apartment Building");
 </head>
-<h1> Excercise #6: Representing Data on a Map - Abbey Warke</h1>
+
 <body>
-<div id='map'></div>
+    <h1>"Exercise 6"</h1>
+<h2>ByAbbey Warke</h2>
+    
+    <div id='map'></div>
 
-	
 
-	
+<p>The red polyline shows my path from State GYM to the College of Design.<br>The pale purple circles shows these two buildings that are the start and <br> end points of my daily path. <br> The Google color markers show the health center, my office in Durham, and <br>the liberary on campus that I go to them regularly. <br> The small red circle markers indicate the buildings that I have had class in <br>them since Fall 2017!<br> The blue rectangle shows the GIS Facility location in Durham Hall in where <br>I work as a GIS technician!</p>
 
 
+
+    <script>
+       var map = L.map('map', {minZoom:15}).setView([42.0218, -93.6473], 15.5);
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        
+       var coordinates = [
+    [42.025133, -93.653418],      
+    [42.025327, -93.653202],     
+    [42.025343, -93.653009],       
+    [42.025351, -93.652494],
+    [42.025343, -93.652022],
+    [42.025662, -93.651957],
+    [42.026275, -93.651957],
+    [42.026841, -93.651979],
+    [42.027378, -93.651945],
+    [42.028089, -93.651970],
+    [42.028108, -93.652111],
+    [42.028468, -93.652557],
+    [42.028563, -93.652851],
+    [42.028449, -93.653259]
+    ];
+        
+        var polyline = L.polyline(coordinates, {color: 'red', opacity:0.80}).addTo(map);
+polyline.bindTooltip("Getting from campus town to Ames Laboratory");
+var circle1 = L.circle([42.0210, -93.6490], {radius:75, color: '#ee82ee', weight: 1}).addTo(map);
+var circle2 = L.circle([42.0300, -93.6483], {radius:75, color: '#ee82ee', weight: 1}).addTo(map);
+    </script>
+  <p id='public'></p>  
+    <script>
+var myPoints = [
+    [42.0272, -93.6485, "Lunch","Heaping Plato"],
+    [42.0281, -93.6487, "Coffee","Bookends"],
+    [42.0251, -93.6536, "Smoothies","State Gym"]
+    ];
+        
+    function getColor(s) {
+    return  s == "Lunch" ? 'http://www.googlemapsmarkers.com/v1/e41a1c' :
+            s == "Coffee" ? 'http://www.googlemapsmarkers.com/v1/377eb8' :
+            s == "Smoothies" ? 'http://www.googlemapsmarkers.com/v1/4daf4a' :
+            'http://www.googlemapsmarkers.com/v1/FFFFFF';
+}
+  
+for (var i = 0; i < myPoints.length; i++) {
+    marker = new L.marker([myPoints[i][0],myPoints[i][1]], {
+        icon: L.icon({iconUrl: getColor(myPoints[i][2]),iconSize:[10, 17],iconAnchor:[5, 17],popupAnchor:[0, -20]}), title: myPoints[i][3], opacity: 1.0
+    }).bindPopup('<b>'+myPoints[i][3]+'</b>').addTo(map);
+}  
+    </script>
+    
+   <p id='Class'></p>
+    <script>
+    
+    var cirmarker1 = L.circleMarker([42.025802, -93.651495], {fillOpacity	: 1, fillColor: "#ff0000", weight: 0, radius: 5}).addTo(map);
+var cirmarker2 = L.circleMarker([42.027301, -93.649939], {fillOpacity	: 1, fillColor: "#ff0000", weight: 0, radius: 5}).addTo(map);
+var cirmarker3 = L.circleMarker([42.026687, -93.652782], {fillOpacity	: 1, fillColor: "#ff0000", weight: 0, radius: 5}).addTo(map);
+var cirmarker3 = L.circleMarker([42.029094, -93.648834], {fillOpacity	: 1, fillColor: "#ff0000", weight: 0, radius: 5}).addTo(map);
+var rectangle = L.rectangle([[42.027859, -93.650132],[42.027237, -93.649531]], {color: "#0000ff", weight: 2}).addTo(map);
+rectangle.bindPopup('<b>ISU GIS Facility</b>')
+    </script>
+    
 </body>
 </html>
