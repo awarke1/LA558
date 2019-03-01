@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
     <style>
         
-        body{background-color:gold}
+        body{background-color:pink}
         h1{color: black; font-family: inherit; text-align: center; font-size: 35px}
         h2{color: black; font-family: inherit; text-align: center; font-size: 20px}
         p{color: black; font-family: sans-serif; font-size: 15px; text-align:left}
@@ -32,12 +32,13 @@
     <div id='map'></div>
 
 
-<p>The red polyline shows my path from State GYM to the College of Design.<br>The pale purple circles shows these two buildings that are the start and <br> end points of my daily path. <br> The Google color markers show the health center, my office in Durham, and <br>the liberary on campus that I go to them regularly. <br> The small red circle markers indicate the buildings that I have had class in <br>them since Fall 2017!<br> The blue rectangle shows the GIS Facility location in Durham Hall in where <br>I work as a GIS technician!</p>
-
+<p> The 2 purple cirlces show where I walk from campus town to work at the Ames Laboratory! The red line connects the 2 places. The blue dot shows Science Hall II where I have 
+   a lot of my classes. The salmon colored rectangle shows where I have my wine and spirits class in McKay Hall. The Google Map markers show where I like to get food on campus.
+   
 
 
     <script>
-       var map = L.map('map', {minZoom:15}).setView([42.0266, -93.6465], 20.5);
+       var map = L.map('map', {minZoom:15}).setView([42.0266, -93.6465], 5.5);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
