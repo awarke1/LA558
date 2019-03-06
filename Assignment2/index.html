@@ -38,10 +38,11 @@
   
     <script>
         //----------Function 1: Tile map----------
-        var map = L.map('map').setView([42.037, -93.64], 5.5);
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+       var map = L.map('map').setView([42.0, -93.634], 12);
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
         
         L.marker([42.0300, -93.6483]).addTo(map)
             .bindPopup("Where Abbey Works")
