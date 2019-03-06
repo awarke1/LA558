@@ -32,12 +32,9 @@
     
     <div id='map'></div>
 
-  <br>
-    <p><a href="javascript:isu()">ISU</a>; <br></p>
-
   
     <script>
-        //----------Function 1: Tile map----------
+        //----------Tile map----------
        var map = L.map('map').setView([42.0, -93.634], 12);
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -48,7 +45,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             .bindPopup("Where Abbey Works")
             .openPopup();
      
-        //----------Function2: Adding multiple new buldings markers----------
+        //----------Adding multiple new buldings markers----------
         //an array list of new buildings 
         var new buildings = [
             [42.0285, -93.6446, "Bessy Hall"],
@@ -103,21 +100,21 @@ for (var i = 0; i < myPoints.length; i++) {
     
     <script>
     
-        //Function4b: set Zoom
+        //set Zoom
        function zoomOut(){
          map.setZoom(8);
         };
         
      </script>
       <script>
-           //Function 5: MouseEvent
+           //MouseEvent
              map.on('click', function(ev) {
     alert(ev.latlng); 
 });
     </script>
     
     <script>
-        //Function 6: latlng Bound
+        //latlng Bound
         
         var corner1 = L.latLng(41.5341, -93.6588),
 corner2 = L.latLng(41.5370, -93.6650),
