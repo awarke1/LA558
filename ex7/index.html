@@ -17,11 +17,12 @@
 		html, body {
 			height: 100%;
 			margin: 0;
+			align: centered;
 		}
 		#map {
 			width: 600px;
 			height: 400px;
-			align: center;
+			align: centered;
 		}
 	</style>
 
@@ -51,7 +52,7 @@
 
 	var map = L.map('map', {
 		center: [39.73, -104.99],
-		zoom: 10,
+		zoom: 5,
 		layers: [grayscale, cities]
 	});
 
