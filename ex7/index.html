@@ -18,7 +18,7 @@
 			height: 100%;
 			margin: 0;
 			text-align: center;
-			background: yellow;
+			background: orange;
 		}
 		#map {
 			width: 100%;
@@ -63,6 +63,18 @@
 			fillOpacity: 0.3
 		});
 	
+	var pointA = new L.LatLng(39.74, -104.99);
+var pointB = new L.LatLng(38.9717, -95.2353);
+var pointC = new L.LatLng(41.5868, -93.6250);
+var pointD = new L.LatLng(41.8781, -87.6298);
+var pointList = [pointA, pointB, pointC, pointD];
+var myPolyline = new L.Polyline(pointList, {
+    color: 'black',
+    weight: 3,
+    opacity: 1,
+    smoothFactor: 1
+});
+	
 	var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
 			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -74,7 +86,7 @@
 	var map = L.map('map', {
 		center: [39.73, -104.99],
 		zoom: 3.5,
-		layers: [grayscale, cities, polygon]
+		layers: [grayscale, cities, polygon, polyline]
 	});
 
 	var baseLayers = {
@@ -84,7 +96,8 @@
 
 	var overlays = {
 		"Cities": cities,
-		"Wyoming": polygon
+		"Wyoming": polygon,
+		"Connect the Dots": polyline
 		
 	};
 
