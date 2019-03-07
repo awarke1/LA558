@@ -81,7 +81,10 @@ var myPolyline = new L.Polyline(pointList, {
 		mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
 
 	var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
-		streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
+		streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr}),
+	    Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
+	
 
 	var map = L.map('map', {
 		center: [39.73, -104.99],
@@ -91,7 +94,8 @@ var myPolyline = new L.Polyline(pointList, {
 
 	var baseLayers = {
 		"Grayscale": grayscale,
-		"Streets": streets
+		"Streets": streets,
+		"Esri Base Map": Esri_WorldImagery
 	};
 
 	var overlays = {
