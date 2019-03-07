@@ -18,7 +18,7 @@
 			height: 100%;
 			margin: 0;
 			text-align: center;
-			background: orange;
+			background: black;
 		}
 		#map {
 			width: 100%;
@@ -86,7 +86,7 @@ var myPolyline = new L.Polyline(pointList, {
 	var map = L.map('map', {
 		center: [39.73, -104.99],
 		zoom: 3.5,
-		layers: [grayscale, cities, polygon, polyline]
+		layers: [grayscale, cities, polygon, myPolyline]
 	});
 
 	var baseLayers = {
@@ -97,7 +97,7 @@ var myPolyline = new L.Polyline(pointList, {
 	var overlays = {
 		"Cities": cities,
 		"Wyoming": polygon,
-		"Connect the Dots": polyline
+		"Connect the Dots": myPolyline
 		
 	};
 
