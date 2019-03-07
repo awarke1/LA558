@@ -51,9 +51,7 @@
 	L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.').addTo(cities),
 	L.marker([38.9717, -95.2353]).bindPopup('This is Lawrence, KS.').addTo(cities),
 	L.marker([41.5868, -93.6250]).bindPopup('This is Des Moines, IA.').addTo(cities);
-	</script>
 	
-	<script>
 	
 	var polygon = L.polygon([
 	[41.056203, -104.08],
@@ -65,9 +63,8 @@
 		fillColor: 'blue', 
 		fillOpacity: 0.3
 	});
-	</script>
 	
-	<script>
+	
 	var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
 			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -88,12 +85,15 @@
 	};
 
 	var overlays = {
-		"Cities": cities
+		"Cities": cities,
+	         "Wyoming": polygon
+	
 	};
 
 	L.control.layers(baseLayers, overlays).addTo(map);
 
-</script>
+	</script>
+
 
 
 
