@@ -18,7 +18,7 @@
 			height: 100%;
 			margin: 0;
 			text-align: center;
-			background: black;
+			background: blue;
 		}
 		#map {
 			width: 100%;
@@ -83,7 +83,11 @@ var myPolyline = new L.Polyline(pointList, {
 	var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
 		streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
 	
-	    var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	var OSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 20
+});
+	var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
 	
 
@@ -92,11 +96,16 @@ var myPolyline = new L.Polyline(pointList, {
 		zoom: 3.5,
 		layers: [grayscale, cities, polygon, myPolyline]
 	});
+	
+	var basemaps = {
+		"OpenStreetMap": OSM,
+	        "Esri_WorldImagery": Esri_WorldImagery
+		
+	};
 
 	var baseLayers = {
 		"Grayscale": grayscale,
 		"Streets": streets,
-		"Esri Base Map": Esri_WorldImagery
 	};
 
 	var overlays = {
@@ -105,6 +114,7 @@ var myPolyline = new L.Polyline(pointList, {
 		"Connect the Dots": myPolyline
 		
 	};
+	
 
 
 	L.control.layers(baseLayers, overlays).addTo(map);
