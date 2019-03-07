@@ -53,7 +53,7 @@
 	L.marker([41.5868, -93.6250]).bindPopup('This is Des Moines, IA.').addTo(cities);
 	
 	
-	var feature = L.polygon([
+	var polygon = L.polygon([
 	[41.056203, -104.08],
 	[45.036309, -104.08],
 	[45.005246, -111.073823], 
@@ -85,10 +85,13 @@
 	};
 
 	var overlays = {
-		"Cities": cities,
-		"Polygon": polygon
+		"Cities": cities
+		
 	
 	};
+	
+	var feature = {
+		"Wyoming": polygon
 
 	L.control.layers(baseLayers, overlays).addTo(map);
 
