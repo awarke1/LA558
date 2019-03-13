@@ -4,10 +4,10 @@
 <meta name="exercise 8" content="exercise 8" />
     <style>
           h1 {
-        font-size: 1.5em;
+        font-size: 30;
         font: arial, helvetica, sans-serif;
         text-align: center;
-        color: pink
+        color: Blue
 	    }
 	    h2 {
 		    font-size: 15;
@@ -82,7 +82,7 @@ function getColor(d) {
   return d == 'Over 0.5%' ? '#990000' :
     d == '< 0.5% and > 0.47%' ? "#ff0000" :
     d == '< 0.47%' ? "#ff9933" :
-    "#FFFFFF"; 
+    "#ffcc66"; 
 }
 for (var i = 0; i < myPoints.length; i++) {
   marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
@@ -169,7 +169,7 @@ function getColor(d) {
   return d == 'Over 0.5%' ? '#990000' :
     d == '< 0.5% and > 0.47%' ? "#ff0000" :
     d == '< 0.47%' ? "#ff9933" :
-    "#FFFFFF";  
+    "#ffcc66";  
 }
 for (var i = 0; i < myPoints.length; i++) {
   marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
