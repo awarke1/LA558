@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-<meta name="exercise 8" content="exercise 8" />
+<meta name="Ex 8" content="Ex 8" />
     <style>
           h1 {
         font-size: 30;
-        font: arial, helvetica, sans-serif;
+        font: arial;
         text-align: center;
         color: Blue
 	    }
@@ -26,7 +26,7 @@
 	  
   <style id="jsbin-css">
 html, body, 
-#map { height: 480px; width: 500px; padding: 0; map-align: center; }
+#map { height: 480px; width: 500px; padding: 0; margin: auto; }
 .legend {
     line-height: 10px;
     color: #555;
@@ -49,10 +49,7 @@ html, body,
     margin: 0 0 5px;
     color: #777;
 }
-/*
-box-shadow: none|h-shadow v-shadow blur spread color |inset|initial|inherit;
-https://www.w3schools.com/cssref/css3_pr_box-shadow.asp
-*/
+
 </style>
 </head>
   <body>
@@ -77,7 +74,7 @@ var myPoints = [
   ["46", 35.2010, -91.8318, "< 0.47%"],
   ["95", 41.6032, -73.0877, "< 0.47%"],
 ];
-//set color of marker
+// color of marker
 function getColor(d) {
   return d == 'Over 0.5%' ? '#990000' :
     d == '< 0.5% and > 0.47%' ? "#ff0000" :
@@ -97,8 +94,8 @@ for (var i = 0; i < myPoints.length; i++) {
     .addTo(map);
 }
 var legend = L.control({
-  position: 'topright'
-	//Possible values are 'topleft', 'topright', 'bottomleft' or 'bottomright'
+  position: 'bottomleft'
+	
 });
 legend.onAdd = function(map) {
   var div = L.DomUtil.create('div', 'info legend'),
@@ -117,7 +114,7 @@ legend.addTo(map);
 
 
 <script id="jsbin-source-css" type="text/css">html, body, 
-#map { height: 480px; width:500px; padding: 0; }
+#map { height: 480px; width:500px; padding: 0; margin: auto; }
 .legend {
     line-height: 10px;
     color: #555;
@@ -164,7 +161,7 @@ var myPoints = [
   ["46", 35.2010, -91.8318, "< 0.47%"],
   ["95", 41.6032, -73.0877, "< 0.47%"],
 ];
-//set color of marker
+// color of marker
 function getColor(d) {
   return d == 'Over 0.5%' ? '#990000' :
     d == '< 0.5% and > 0.47%' ? "#ff0000" :
@@ -180,12 +177,12 @@ for (var i = 0; i < myPoints.length; i++) {
       opacity: 1,
       fillOpacity: 0.9
     })
-    .bindPopup("Category: " + myPoints[i][3]) //note there is no comma here
+    .bindPopup("Category: " + myPoints[i][3]) 
     .addTo(map);
 }
 var legend = L.control({
-  position: 'topright'
-	//Possible values are 'topleft', 'topright', 'bottomleft' or 'bottomright'
+  position: 'bottomleft'
+	
 });
 legend.onAdd = function(map) {
   var div = L.DomUtil.create('div', 'info legend'),
