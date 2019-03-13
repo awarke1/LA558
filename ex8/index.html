@@ -1,56 +1,195 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-<head>
-	
-	<title>EX - 7</title>
-
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
-
-
-	<style>
-		html, body {
-			height: 100%;
-			margin: 0;
-			text-align: center;
-			background: black;
-		}
-		#map {
-			width: 100%;
-			height: 650px;
-		
-		}
-		h1 {
-			color: #B5C69B;
-			text-align: center;
-			font-size: 32;
-		}
-		h2 {
-			color: #B5C69B;
-			text-align: center;
-			font-size: 25;
-		}
-		
-	</style>
-
-	<h1>Excercise 8</h1>
-	<h2>Abbey Warke</h2>
+  <head>
+<meta name="exercise 8" content="exercise 8" />
+    <style>
+          h1 {
+        font-size: 1.5em;
+        font: arial, helvetica, sans-serif;
+        text-align: center;
+        color: purple;
+           
+    </style> 
+    
+    <h1>Exercise 8:<br>
+      US States with the Higest Cancer Rates</h1>
+	  <h2> This map describes the top 10 US states with the highest cancer rates. These rates are from all types of cancer, all ages/race/ethnicity/male/female. These rates were calculated per 100,000 people. The data used for this map is from the USCS data.</h2>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	  
+  <style id="jsbin-css">
+html, body, 
+#map { height: 480px; margin: 0; padding: 0; }
+.legend {
+    line-height: 10px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+.info {
+    padding: 6px 8px;
+    font: 10px/20px Arial, Helvetica, sans-serif;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+/*
+box-shadow: none|h-shadow v-shadow blur spread color |inset|initial|inherit;
+https://www.w3schools.com/cssref/css3_pr_box-shadow.asp
+*/
+</style>
 </head>
-<body>
+  <body>
+<div id="map"></div>
+  <script id="jsbin-javascript">
+console.clear();
+var map = L.map('map').setView([42, -97], 3);
+// add an OpenStreetMap tile layer
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  maxZoom: 18
+}).addTo(map);
+var myPoints = [
+  ["73", 37.8393, -84.2700, "Over 500"],
+  ["42", 38.9108, -75.5277, "< 500 and > 474"],
+  ["70", 41.2033, -77.1945, "< 500 and > 474"],
+  ["19", 40.7128, -74.0060, "< 500 and > 474"],
+  ["64", 40.0583, -74.4057, "< 500 and > 474"],
+  ["8.5", 30.9843, -91.9623, "< 500 and > 474"],
+  ["21", 46.7296, -94.6859, "< 500 and > 474"],
+  ["70", 41.8780, -93.0977, "< 474"],
+  ["46", 35.2010, -91.8318, "< 474"],
+  ["95", 41.6032, -73.0877, "< 474"],
+];
+//set color of marker
+function getColor(d) {
+  return d == 'Over 500' ? '#660066' :
+    d == '< 500 and > 474' ? "#B558A8" :
+    d == '< 474' ? "#EEBDE7" :
+    "#FFFFFF"; //white
+}
+for (var i = 0; i < myPoints.length; i++) {
+  marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
+      radius: myPoints[i][0] / 10 + 5,
+      fillColor: getColor(myPoints[i][3]),
+      color: "#000",
+      weight: 0,
+      opacity: 1,
+      fillOpacity: 0.9
+    })
+    .bindPopup("Category: " + myPoints[i][3]) //note there is no comma here
+    .addTo(map);
+}
+var legend = L.control({
+  position: 'topright'
+	//Possible values are 'topleft', 'topright', 'bottomleft' or 'bottomright'
+});
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create('div', 'info legend'),
+    cities = ['Over 500', '< 500 and > 474', '< 474'],
+    labels = [''];
+  // loop through items and generate a label with a colored square for each
+  for (var i = 0; i < cities.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + getColor(cities[i]) + ' "></i> ' +
+      cities[i] + (cities ? '' + '<br>' : '');
+  }
+  return div;
+};
+legend.addTo(map);
+</script>
 
-<div id='map'></div>
 
-<script>
-		
-	</script>
+<script id="jsbin-source-css" type="text/css">html, body, 
+#map { height: 480px; margin: 0; padding: 0; }
+.legend {
+    line-height: 10px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+.info {
+    padding: 6px 8px;
+    font: 10px/20px Arial, Helvetica, sans-serif;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+/*
+box-shadow: none|h-shadow v-shadow blur spread color |inset|initial|inherit;
+https://www.w3schools.com/cssref/css3_pr_box-shadow.asp
+*/</script>
 
-
-
-
-</body>
+<script id="jsbin-source-javascript" type="text/javascript">console.clear();
+var map = L.map('map').setView([42, -97], 3);
+// add an OpenStreetMap tile layer
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  maxZoom: 18
+}).addTo(map);
+var myPoints = [
+  ["73", 37.8393, -84.2700, "Over 500"],
+  ["42", 38.9108, -75.5277, "< 500 and > 474"],
+  ["70", 41.2033, -77.1945, "< 500 and > 474"],
+  ["19", 40.7128, -74.0060, "< 500 and > 474"],
+  ["64", 40.0583, -74.4057, "< 500 and > 474"],
+  ["8.5", 30.9843, -91.9623, "< 500 and > 474"],
+  ["21", 46.7296, -94.6859, "< 500 and > 474"],
+  ["70", 41.8780, -93.0977, "< 474"],
+  ["46", 35.2010, -91.8318, "< 474"],
+  ["95", 41.6032, -73.0877, "< 474"],
+];
+//set color of marker
+function getColor(d) {
+   return d == 'Over 500' ? '#660066' :
+    d == '< 500 and > 474' ? "#B558A8" :
+    d == '< 474' ? "#EEBDE7" :
+    "#FFFFFF"; //white
+}
+for (var i = 0; i < myPoints.length; i++) {
+  marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
+      radius: myPoints[i][0] / 10 + 5,
+      fillColor: getColor(myPoints[i][3]),
+      color: "#000",
+      weight: 0,
+      opacity: 1,
+      fillOpacity: 0.9
+    })
+    .bindPopup("Category: " + myPoints[i][3]) //note there is no comma here
+    .addTo(map);
+}
+var legend = L.control({
+  position: 'topright'
+	//Possible values are 'topleft', 'topright', 'bottomleft' or 'bottomright'
+});
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create('div', 'info legend'),
+    cities = ['Over 500', '< 500 and > 474', '< 474'],
+    labels = [''];
+  // loop through items and generate a label with a colored square for each
+  for (var i = 0; i < cities.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + getColor(cities[i]) + ' "></i> ' +
+      cities[i] + (cities ? '' + '<br>' : '');
+  }
+  return div;
+};
+legend.addTo(map);</script></body>
 </html>
