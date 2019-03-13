@@ -10,9 +10,10 @@
         color: pink
 	    }
 	    h2 {
-		    font-size: 25;
-		    font: arial;
-		    color: black
+		    font-size: 15;
+		    font: times;
+		    color: black;
+		    text-align: center
 	    }
 		  
            
@@ -25,7 +26,7 @@
 	  
   <style id="jsbin-css">
 html, body, 
-#map { height: 480px; margin: 0; padding: 0; }
+#map { height: 480px; margin: auto; padding: 0; }
 .legend {
     line-height: 10px;
     color: #555;
@@ -78,10 +79,10 @@ var myPoints = [
 ];
 //set color of marker
 function getColor(d) {
-  return d == 'Over 500' ? '#660066' :
-    d == '< 500 and > 474' ? "#B558A8" :
-    d == '< 474' ? "#EEBDE7" :
-    "#FFFFFF"; //white
+  return d == 'Over 500' ? '#990000' :
+    d == '< 500 and > 474' ? "#ff0000" :
+    d == '< 474' ? "#ff9933" :
+    "#FFFFFF"; 
 }
 for (var i = 0; i < myPoints.length; i++) {
   marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
@@ -165,10 +166,10 @@ var myPoints = [
 ];
 //set color of marker
 function getColor(d) {
-   return d == 'Over 500' ? '#660066' :
-    d == '< 500 and > 474' ? "#B558A8" :
-    d == '< 474' ? "#EEBDE7" :
-    "#FFFFFF"; //white
+   return d == 'Over 500' ? '#990000' :
+    d == '< 500 and > 474' ? "#ff0000" :
+    d == '< 474' ? "#ff9933" :
+    "#FFFFFF"; 
 }
 for (var i = 0; i < myPoints.length; i++) {
   marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
