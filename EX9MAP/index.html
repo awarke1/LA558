@@ -2,11 +2,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Title of the document</title>
-</head>
-
-<body>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<title>EX 9 Map</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://code.highcharts.com/maps/highmaps.js"></script>
 <script src="https://code.highcharts.com/maps/modules/data.js"></script>
 <script src="https://code.highcharts.com/maps/modules/drilldown.js"></script>
@@ -15,8 +12,14 @@
 <script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
 
 <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+</head>
 
-<div id="container" style="height: 500px; min-width: 310px; max-width: 800px; margin: 0 auto"></div>
+<body>
+
+    <div id="container" style="height: 500px; min-width: 310px; max-width: 800px; margin: 0 auto"></div>
+    
+    <script id="jsbin-javascript">
+    
 var data = Highcharts.geojson(Highcharts.maps['countries/us/us-all']),
     separators = Highcharts.geojson(Highcharts.maps['countries/us/us-all'], 'mapline'),
     // Some responsiveness
@@ -156,6 +159,7 @@ Highcharts.mapChart('container', {
         }
     }
 });
+    </script>
 
 </body>
 
