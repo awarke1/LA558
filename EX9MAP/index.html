@@ -60,11 +60,11 @@ Highcharts.data({
                 series: [{
                     name: 'Votes',
                     data: [{
-                        name: 'Trump',
+                        name: 'Crazy',
                         color: '#0200D0',
                         y: parseInt(columns[3][row], 10)
                     }, {
-                        name: 'Clinton',
+                        name: 'Not Crazy',
                         color: '#C40401',
                         y: parseInt(columns[2][row], 10)
                     }],
@@ -91,7 +91,7 @@ Highcharts.data({
                 },
 
                 title: {
-                    text: 'Weird vs. Not Weird States'
+                    text: 'Crazy vs. Not Crazy States'
                 },
                 subtitle: {
                     text: 'Source: <a href="https://transition.fec.gov/pubrec/fe2016/2016presgeresults.pdf">Federal Government</a>'
@@ -123,7 +123,7 @@ Highcharts.data({
                         from: 0,
                         to: 100,
                         color: '#023695',
-                        name: 'Weird'
+                        name: 'Crazy'
                     }]
                 },
 
@@ -138,7 +138,7 @@ Highcharts.data({
                             textTransform: 'uppercase'
                         }
                     },
-                    name: 'Republicans margin',
+                    name: 'Crazy Margin',
                     point: {
                         events: {
                             click: pointClick
@@ -184,6 +184,7 @@ Highcharts.data({
             '</div>');
     }
 });
+
 
     </script>
 
