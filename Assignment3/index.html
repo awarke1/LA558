@@ -77,6 +77,181 @@
     }]
 });
   </script>
+  
+  // GeJSon Leaflet Map
+  
+  <style id="jsbin-css">
+html, body, 
+#map { height: 480px; width: 500px; padding: 0; margin: auto; }
+.legend {
+    line-height: 10px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+.info {
+    padding: 6px 8px;
+    font: 10px/20px Arial, Helvetica, sans-serif;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+</style>
+</head>
+  <body>
+<div id="map"></div>
+  <script id="jsbin-javascript">
+console.clear();
+var map = L.map('map').setView([42, -97], 3);
+// add an OpenStreetMap tile layer
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  maxZoom: 18
+}).addTo(map);
+var myPoints = [
+  ["California", 36.7783, -119.4179, "Over 20 Mgal/day"],
+  ["Texas", 31.9686, -99.9018, "Over 10 Mgal/day"],
+  ["Idaho", 44.0682, -114.7420, "Over 10 Mgal/day"],
+  ["Arkansas", 35.2010, -91.8318, "Over 10 Mgal/day"],
+  ["Illinois", 40.6331, -89.3985, "Over 10 Mgal/day"],
+  ["Colorado", 39.5501, -105.7821, "Over 5 Mgal/day"],
+  ["Michigan", 44.3148, -85.6024, "Over 5 Mgal/day"],
+  ["Montana", 46.8797, -110.3626, "Over 5 Mgal/day"],
+  ["Nebraska", 41.4925, -99.9018, "Over 5 Mgal/day"],
+  ["Missouri", 37.9643, -91.8318, "Over 5 Mgal/day"],
+];
+// color of marker
+function getColor(d) {
+  return d == 'Over 20 Mgal/ day' ? '#990000' :
+    d == 'Over 10 Mgal/day' ? "#ff0000" :
+    d == 'Over 5 Mgal/day' ? "#ff9933" :
+    "#ffcc66"; 
+}
+for (var i = 0; i < myPoints.length; i++) {
+  marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
+      radius: myPoints[i][0] / 10 + 5,
+      fillColor: getColor(myPoints[i][3]),
+      color: "#000",
+      weight: 0,
+      opacity: 1,
+      fillOpacity: 0.9
+    })
+    .bindPopup("Category: " + myPoints[i][3]) //note there is no comma here
+    .addTo(map);
+}
+var legend = L.control({
+  position: 'bottomleft'
+	
+});
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create('div', 'info legend'),
+    cities = ['Over 20 Mgal/day', 'Over 10 Mgal/day', 'Over 5 Mgal/day'],
+    labels = [''];
+  // loop through items and generate a label with a colored square for each
+  for (var i = 0; i < cities.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + getColor(cities[i]) + ' "></i> ' +
+      cities[i] + (cities ? '' + '<br>' : '');
+  }
+  return div;
+};
+legend.addTo(map);
+</script>
+
+
+<script id="jsbin-source-css" type="text/css">html, body, 
+#map { height: 480px; width:500px; padding: 0; margin: auto; }
+.legend {
+    line-height: 10px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+.info {
+    padding: 6px 8px;
+    font: 10px/20px Arial, Helvetica, sans-serif;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+/*
+box-shadow: none|h-shadow v-shadow blur spread color |inset|initial|inherit;
+https://www.w3schools.com/cssref/css3_pr_box-shadow.asp
+*/</script>
+
+<script id="jsbin-source-javascript" type="text/javascript">console.clear();
+var map = L.map('map').setView([42, -97], 3);
+// add an OpenStreetMap tile layer
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  maxZoom: 18
+}).addTo(map);
+var myPoints = [
+  ["California", 36.7783, -119.4179, "Over 20 Mgal/day"],
+  ["Texas", 31.9686, -99.9018, "Over 10 Mgal/day"],
+  ["Idaho", 44.0682, -114.7420, "Over 10 Mgal/day"],
+  ["Arkansas", 35.2010, -91.8318, "Over 10 Mgal/day"],
+  ["Illinois", 40.6331, -89.3985, "Over 10 Mgal/day"],
+  ["Colorado", 39.5501, -105.7821, "Over 5 Mgal/day"],
+  ["Michigan", 44.3148, -85.6024, "Over 5 Mgal/day"],
+  ["Montana", 46.8797, -110.3626, "Over 5 Mgal/day"],
+  ["Nebraska", 41.4925, -99.9018, "Over 5 Mgal/day"],
+  ["Missouri", 37.9643, -91.8318, "Over 5 Mgal/day"],
+];
+// color of marker
+function getColor(d) {
+   return d == 'Over 20 Mgal/ day' ? '#990000' :
+    d == 'Over 10 Mgal/day' ? "#ff0000" :
+    d == 'Over 5 Mgal/day' ? "#ff9933" :
+    "#ffcc66";   
+}
+for (var i = 0; i < myPoints.length; i++) {
+  marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
+      radius: myPoints[i][0] / 10 + 5,
+      fillColor: getColor(myPoints[i][3]),
+      color: "#000",
+      weight: 0,
+      opacity: 1,
+      fillOpacity: 0.9
+    })
+    .bindPopup("Category: " + myPoints[i][3]) 
+    .addTo(map);
+}
+var legend = L.control({
+  position: 'bottomleft'
+	
+});
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create('div', 'info legend'),
+    cities = ['Over 20 Mgal/day', 'Over 10 Mgal/day', 'Over 5 Mgal/day'],
+    labels = [''];
+  // loop through items and generate a label with a colored square for each
+  for (var i = 0; i < cities.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + getColor(cities[i]) + ' "></i> ' +
+      cities[i] + (cities ? '' + '<br>' : '');
+  }
+  return div;
+};
+legend.addTo(map);</script>
 
   
 </body>
