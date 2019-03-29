@@ -275,7 +275,9 @@ var Hydda_Base = L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/base/{z}/{
 		"Streets": streets,
 		 "Hydda_Base": Hydda_Base
 		};
-	  
+	
+	  L.control.layers(baseLayers, overlays).addTo(map);
+
 	  </script>
 
   
