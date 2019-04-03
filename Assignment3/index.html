@@ -124,7 +124,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
   maxZoom: 18
 }).addTo(map);
-var myPoints = L.layerGroup();[
+var myPoints = L.layerGroup();
   ["73", 36.7783, -119.4179, "Over 20 Mgal/day"].addTo(cities),
   ["42", 31.9686, -99.9018, "Over 10 Mgal/day"].addTo(cities),
   ["70", 44.0682, -114.7420, "Over 10 Mgal/day"].addTo(cities),
@@ -134,8 +134,8 @@ var myPoints = L.layerGroup();[
   ["21", 44.3148, -85.6024, "Over 5 Mgal/day"].addTo(cities),
   ["70", 46.8797, -110.3626, "Over 5 Mgal/day"].addTo(cities),
   ["46", 41.4925, -99.9018, "Over 5 Mgal/day"].addTo(cities),
-  ["95", 37.9643, -91.8318, "Over 5 Mgal/day"].addTo(cities),
-];
+  ["95", 37.9643, -91.8318, "Over 5 Mgal/day"].addTo(cities);
+	  
 // color of marker
 function getColor(d) {
   return d == 'Over 20 Mgal/ day' ? '#00008B' :
@@ -187,7 +187,7 @@ var Hydda_Base = L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/base/{z}/{
 	var map = L.map('map', {
 		center: [39.73, -104.99],
 		zoom: 3.5,
-		layers: [grayscale, cities, polygon, myPolyline]
+		layers: [grayscale, myPoints, polygon, myPolyline]
 	});
 	
 	var baseLayers = {
@@ -196,9 +196,8 @@ var Hydda_Base = L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/base/{z}/{
 		 "Hydda_Base": Hydda_Base
 	};
 	var overlays = {
-		"Cities": cities,
-		"Wyoming": polygon,
-		"Connect the Dots": myPolyline
+		"Cities": myPoints,
+		
 		
 	};
 	  L.control.layers(baseLayers, overlays).addTo(map);
@@ -242,7 +241,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
   maxZoom: 18
 }).addTo(map);
-var myPoints = L.layerGroup(); [
+var myPoints = L.layerGroup();
   ["73", 36.7783, -119.4179, "Over 20 Mgal/day"].addTo(cities),
   ["42", 31.9686, -99.9018, "Over 10 Mgal/day"].addTo(cities),
   ["70", 44.0682, -114.7420, "Over 10 Mgal/day"].addTo(cities),
@@ -252,8 +251,8 @@ var myPoints = L.layerGroup(); [
   ["21", 44.3148, -85.6024, "Over 5 Mgal/day"].addTo(cities),
   ["70", 46.8797, -110.3626, "Over 5 Mgal/day"].addTo(cities),
   ["46", 41.4925, -99.9018, "Over 5 Mgal/day"].addTo(cities),
-  ["95", 37.9643, -91.8318, "Over 5 Mgal/day"].addTo(cities),
-];
+  ["95", 37.9643, -91.8318, "Over 5 Mgal/day"].addTo(cities);
+	
 // color of marker
 function getColor(d) {
    return d == 'Over 20 Mgal/ day' ? '#00008B' :
@@ -305,7 +304,7 @@ var Hydda_Base = L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/base/{z}/{
 	var map = L.map('map', {
 		center: [39.73, -104.99],
 		zoom: 3.5,
-		layers: [grayscale, cities, polygon, myPolyline]
+		layers: [grayscale, myPoints, polygon, myPolyline]
 	});
 	
 	var baseLayers = {
@@ -314,9 +313,8 @@ var Hydda_Base = L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/base/{z}/{
 		 "Hydda_Base": Hydda_Base
 	};
 	var overlays = {
-		"Cities": cities,
-		"Wyoming": polygon,
-		"Connect the Dots": myPolyline
+		"Cities": myPoints,
+		
 		
 	};
 	
