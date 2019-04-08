@@ -10,7 +10,7 @@
         width: 80%;
         margin: 0 auto;
         font-family: sans-serif;
-        background-color: darkseagreen; 
+        background-color: pink; 
     }
     h1 {
         font-size: 2em;
@@ -56,14 +56,16 @@
   
 <div id='map'></div>
 
-	 <p id="zoomOut">
-    <a a href="javascript:zoomOut()">Zoom out</a> to see more! <br>
-    </p>
-      
- <p id="button">
-    <button onclick="button()">DSM International Airport</button>
-    
-    </p> 
+	<br>
+  <p>
+  <button type="button" id="getZoom">Get Zoom</button> the Zoom is <span id="theZoom">-</span>
+<br>
+  <br>
+  The two buttons below, Bessey Hall and Heaping Plato, are locations where I spend a lot of my time.
+      <br>
+<button type="button" id="BesseyHall">Bessey Hall</button>
+      <br>
+  <button type="button" id="HeapingPlato">Heaping Plato</button><br>
   
     <script id="jsbin-javascript">
 var map = L.map('map').setView([42.0266, -93.6465], 10);
