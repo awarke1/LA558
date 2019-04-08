@@ -63,7 +63,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 .addTo(map);
         }
     </script>
-    <script>
+    <script id="jsbin-javascript">
         //----------Links----------
         //Function3 and4a : link to ISU, draggable marker
         function isu() {
@@ -73,8 +73,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         L.marker([42.026237, -93.646553],{draggable:true}).addTo(map)
             .bindPopup('<a href="https://www.iastate.edu/" target="_blank"> Iowa State University </a>')
             .openPopup();   
-    </script>
-    <script>
+    
 var myPoints = [
     [38.2462852, -90.586778, "Home","Block 1"],
     [42.027963, -93.648888, "Study","Parks Library"]
@@ -92,7 +91,7 @@ for (var i = 0; i < myPoints.length; i++) {
     }).bindPopup('<b>'+myPoints[i][3]+'</b>').addTo(map);
 }     
         
-    </script>
+    
     <p id="zoomOut">
     <a a href="javascript:zoomOut()">Zoom out</a> to see more! <br>
     </p>
@@ -101,23 +100,21 @@ for (var i = 0; i < myPoints.length; i++) {
     <button onclick="button()">DSM International Airport</button>
     
     </p> 
-    
-    <script>
-    
+   
+   
         //set Zoom
        function zoomOut(){
          map.setZoom(8);
         };
         
-     </script>
-      <script>
+
            //MouseEvent
              map.on('click', function(ev) {
     alert(ev.latlng); 
 });
-    </script>
     
-    <script>
+    
+   
         //latlng Bound
         
         var corner1 = L.latLng(41.5341, -93.6588),
