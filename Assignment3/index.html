@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Assignmenyyy</title>
+<title>Assignmentyyy</title>
  
 </head>
 <body>
@@ -265,11 +265,20 @@ legend.addTo(map);
 	  
 	
 	  </script>
+<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
-<div id="map"></div>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+
+
+<div id="map2"></div>
+	  
   <script id="jsbin-javascript">
 console.clear();
-var map = L.map('map').setView([42, -97], 3);
+var map = L.map('map2').setView([42, -97], 3);
 	  
 		var cities = L.layerGroup();
 	L.marker([41.8781, -87.6298]).bindPopup('This is Chicago, IL.').addTo(cities),
