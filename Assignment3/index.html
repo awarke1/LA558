@@ -35,7 +35,7 @@
   soon be a problem for all of us. There are many predictions of a water shortage in our lifetime, which is why being sustainable with our water is very important.
   Hopefully after reading this you will see how much water we all use every single day.</p>
   
-  //Highchart Script//
+  *highchartscript*
 	 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
@@ -288,8 +288,9 @@ legend.onAdd = function(map) {
   return div;
 };
 legend.addTo(map);
+	</script>
 	
-
+<script>
 	  <div id="layercontrol">
     <label><input type="checkbox" data-layer="cities">Cities</label>
 </div>
@@ -303,7 +304,7 @@ div#layercontrol {
 // using the example here: http://leafletjs.com/examples/layers-control.html
 // the usual map setup - but no need to set layers as in the example
 	
-	<script>
+	
 var map = L.map('map', {
     center: [39.73, -104.99],
     zoom: 10
