@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Assignment222</title>
+<title>Assignment123</title>
  
 </head>
 <body>
@@ -80,82 +80,6 @@
 	  
 	  </script>
 
-	  <meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
-	  
-	  
-  <script id="jsbin-javascript">
-console.clear();
-var map = L.map('map2').setView([37.0902, -95.7129], 4);
-	  
-		var cities = L.layerGroup();
-	L.marker([41.8781, -87.6298]).bindPopup('This is Chicago, IL.').addTo(cities),
-	L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.').addTo(cities),
-	L.marker([38.9717, -95.2353]).bindPopup('This is Lawrence, KS.').addTo(cities),
-	L.marker([41.5868, -93.6250]).bindPopup('This is Des Moines, IA.').addTo(cities);
-	
-		var polygon = L.polygon([
-	[41.056203, -104.08],
-	[45.036309, -104.08],
-	[45.005246, -111.073823], 
-	 [41.056203, -111.073823]
-	],{
-			color: 'blue',
-			fillColor: 'blue',
-			fillOpacity: 0.3
-		});
-	
-	var pointA = new L.LatLng(39.74, -104.99);
-var pointB = new L.LatLng(38.9717, -95.2353);
-var pointC = new L.LatLng(41.5868, -93.6250);
-var pointD = new L.LatLng(41.8781, -87.6298);
-var pointList = [pointA, pointB, pointC, pointD];
-var myPolyline = new L.Polyline(pointList, {
-    color: 'black',
-    weight: 3,
-    opacity: 1,
-    smoothFactor: 1
-});
-	
-	var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
-var Hydda_Base = L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {
-	maxZoom: 18,
-	attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-});
-	var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
-		streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
-	
-	var map = L.map('map2', {
-		center: [39.73, -104.99],
-		zoom: 3.5,
-		layers: [grayscale, cities, polygon, myPolyline]
-	});
-	
-	var baseLayers = {
-		"Grayscale": grayscale,
-		"Streets": streets,
-		 "Hydda_Base": Hydda_Base
-	};
-	var overlays = {
-		"Cities": cities,
-		"Wyoming": polygon,
-		"Connect the Dots": myPolyline
-		
-	};
-	   }
-  return div;
-};
-	
-	L.control.layers(baseLayers, overlays).addTo(map);
-	</script>
   
   // GeJSon Leaflet Map
   
@@ -341,9 +265,46 @@ legend.onAdd = function(map) {
   return div;
 };
 legend.addTo(map);
-	  
-	  </script>
+	
 
-  
+	  <div id="layercontrol">
+    <label><input type="checkbox" data-layer="cities">Cities</label>
+</div>
+	  
+/* using absolute position here, just to show you can put this wherever you want */
+div#layercontrol {
+    position: absolute;
+    top: 0; left: 0;
+	  
+	 // load the following on doc ready (e.g. $(document).ready(function(){}) in jQuery
+// using the example here: http://leafletjs.com/examples/layers-control.html
+// the usual map setup - but no need to set layers as in the example
+var map = L.map('map', {
+    center: [39.73, -104.99],
+    zoom: 10
+});
+
+var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
+denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
+aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
+golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
+
+var cities = L.layerGroup([littleton, denver, aurora, golden]);
+cities.addTo(map);
+
+// use jQuery to listen for checkbox change event
+$('div#layercontrol input[type="checkbox"]').on('change', function() {    
+    var checkbox = $(this);
+    var layer = checkbox.data().layer; 
+
+    // toggle the layer
+    if (checkbox):is('checked') {
+        map.addLayer(layer);
+    } else {
+        map.removeLayer(layer);
+    }
+
+})
+	  </script>
 </body>
 </html>
