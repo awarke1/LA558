@@ -263,7 +263,6 @@ legend.onAdd = function(map) {
 };
 legend.addTo(map);
 	  
-	<div id='map2'></div>
 	
 	  </script>
 
@@ -277,8 +276,11 @@ legend.addTo(map);
 <body>
 
 
-
-<script>
+<div id="map"></div>
+  <script id="jsbin-javascript">
+console.clear();
+var map = L.map('map').setView([42, -97], 3);
+	  
 		var cities = L.layerGroup();
 	L.marker([41.8781, -87.6298]).bindPopup('This is Chicago, IL.').addTo(cities),
 	L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.').addTo(cities),
