@@ -2,6 +2,8 @@
 <html>
 <head>
 <title>Assignment123</title>
+	
+	<!--Here are all the links I used-->
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
@@ -12,6 +14,7 @@
    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
   
 </head>
+	<!--style of the wepage-->
 	 <style>
     body {background-color: aqua;}
     h1{
@@ -27,7 +30,7 @@
   
   </style>
 <body>
-	
+	<!--arranging and linking the 2 images-->
 <div class="column">	
   <img src="water-sanitation.jpg" style="width:100%;height:300px;"> 
 	</div>
@@ -43,7 +46,7 @@
   soon be a problem for all of us. There are many predictions of a water shortage in our lifetime, which is why being sustainable with our water is very important.
   Hopefully after reading this you will see how much water we all use every single day.</p>
   
-
+<!--here I am adding the highchart-->
   <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
   <script id="jsbin-javascript">
@@ -114,7 +117,9 @@
 	
 	<h2>Top 10 US States that use the most Water per day</h2>
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-	  
+	
+	<!--now I am adding in the leaflet map with GeoJson-->
+	
   <style id="jsbin-css">
 html, body, 
 #map { height: 480px; width: 500px; padding: 0; margin: auto; }
@@ -150,7 +155,6 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
   maxZoom: 18
 }).addTo(map);
-
 
 var myPoints = [
   ["73", 36.7783, -119.4179, "Over 20 Mgal/day"],
@@ -204,7 +208,7 @@ legend.addTo(map);
 
 </script>
 
-
+<!--CSS formattng the leaflet map-->
 <script id="jsbin-source-css" type="text/css">html, body, 
 #map { height: 480px; width:500px; padding: 0; margin: auto; }
 .legend {
