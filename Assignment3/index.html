@@ -142,6 +142,33 @@ var Stamen_TonerLines = L.tileLayer('http://{s}.tile.stamen.com/toner-lines/{z}/
 	maxZoom: 20
 });
 
+	  <style id="jsbin-css">
+html, body, 
+#map { height: 480px; width: 500px; padding: 0; margin: auto; }
+.legend {
+    line-height: 10px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+.info {
+    padding: 6px 8px;
+    font: 10px/20px Arial, Helvetica, sans-serif;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+</style>
+	  
 var map = L.map('map').setView([42, -97], 3);
 // add an OpenStreetMap tile layer
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
