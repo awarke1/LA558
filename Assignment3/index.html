@@ -2,7 +2,15 @@
 <html>
 <head>
 <title>Assignment123</title>
- 
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+  
 </head>
 	 <style>
     body {background-color: aqua;}
@@ -35,10 +43,7 @@
   soon be a problem for all of us. There are many predictions of a water shortage in our lifetime, which is why being sustainable with our water is very important.
   Hopefully after reading this you will see how much water we all use every single day.</p>
   
-  *highchartscript*
-	 <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
   <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
   <script id="jsbin-javascript">
@@ -108,42 +113,35 @@
   <p2> As you can see from the pie chart, there is a lot of water usage from thermoelectric power and agriculture purposes. </p2>
 	
 	<h2>Top 10 US States that use the most Water per day</h2>
-  
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
-   <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
-  
-<style id="jsbin-css">
-html, body, 
-#map { height: 480px; width: 500px; padding: 0; margin: auto; }
-.legend {
-    line-height: 10px;
-    color: #555;
-}
-.legend i {
-    width: 18px;
-    height: 20px;
-    float: left;
-    margin-right: 8px;
-    opacity: 0.8;
-}
-.info {
-    padding: 6px 8px;
-    font: 10px/20px Arial, Helvetica, sans-serif;
-    background: rgba(255,255,255,0.8);
-    box-shadow: 0 0 30px rgba(0,0,0,0.2);
-    border-radius: 10px;
-}
-.info h4 {
-    margin: 0 0 5px;
-    color: #777;
-}
-</style>
-	  
+	
+  <div class= "map" id="map"></div>
+      
   <script id="jsbin-javascript">
 console.clear();
+
+	  var OSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 20
+});
+var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	maxZoom: 17,
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+var MapQuestOpen_Aerial = L.tileLayer('http://oatile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg', {
+	attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency',
+	subdomains: '1234'
+});
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+// Overlay layers
+var Stamen_TonerLines = L.tileLayer('http://{s}.tile.stamen.com/toner-lines/{z}/{x}/{y}.png', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 20
+});
+
 var map = L.map('map').setView([42, -97], 3);
 // add an OpenStreetMap tile layer
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -290,45 +288,6 @@ legend.onAdd = function(map) {
 legend.addTo(map);
 	
 
-	  <div id="layercontrol">
-    <label><input type="checkbox" data-layer="cities">Cities</label>
-</div>
-	  
-/* using absolute position here, just to show you can put this wherever you want */
-div#layercontrol {
-    position: absolute;
-    top: 0; left: 0;
-	  
-	 // load the following on doc ready (e.g. $(document).ready(function(){}) in jQuery
-// using the example here: http://leafletjs.com/examples/layers-control.html
-// the usual map setup - but no need to set layers as in the example
-	
-var map = L.map('map', {
-    center: [39.73, -104.99],
-    zoom: 10
-});
-
-var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
-denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
-aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
-golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
-
-var cities = L.layerGroup([littleton, denver, aurora, golden]);
-cities.addTo(map);
-
-// use jQuery to listen for checkbox change event
-$('div#layercontrol input[type="checkbox"]').on('change', function() {    
-    var checkbox = $(this);
-    var layer = checkbox.data().layer; 
-
-    // toggle the layer
-    if (checkbox):is('checked') {
-        map.addLayer(layer);
-    } else {
-        map.removeLayer(layer);
-    }
-
-})
 	  </script>
 </body>
 </html>
