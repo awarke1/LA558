@@ -120,6 +120,36 @@
 	
 	<!--now I am adding in the leaflet map with GeoJson-->
 	
+	<script id="jsbin-javascript">
+console.clear();
+//base map layers OpenStreet Map
+var OSM =
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        //maxZoom: 18
+    });
+  //This is the raw satellite imagery
+var Esri_WI = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+  //This is the black and white terrain
+var Esri_Terrain = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
+    //maxZoom: 13
+});
+//creation of map
+var map = L.map('map', {
+    center: new L.LatLng(51.507359, 15),
+    zoom: 4,
+    layers: OSM
+});
+//Layers & boundary stuff
+var Admin = L.tileLayer('https://maps.heigit.org/openmapsurfer/tiles/adminb/webmercator/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+	var point1 = L.layerGroup([legend]);
+		var point2 = L.layerGroup([point2]);
   <style id="jsbin-css">
 html, body, 
 #map { height: 480px; width: 500px; padding: 0; margin: auto; }
@@ -295,6 +325,24 @@ legend.onAdd = function(map) {
 };
 legend.addTo(map);
 	
+	var point2 =
+    L.marker([41.8780, -93.0977], {
+        title: "Iowa! Where I am!"
+    })
+/layer control
+var baseMaps = {
+    "OpenStreetMap": OSM,
+    "Esri World Imagery": Esri_WI,
+    "Black and White Terrain": Esri_Terrain,
+};
+var overlayMaps = {
+ 
+    "Turn on/off Legend": point1,
+    "Top 20 Team": point2,
+    "Administrative Boundary": Admin,
+ 
+};
+L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 	  </script>
 </body>
