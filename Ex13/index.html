@@ -76,92 +76,8 @@
   var map;
 //GEOJSON LOCAL DATA
 var path = {
-           {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "marker-color": "#009300",
-        "marker-size": "medium",
-        "marker-symbol": "star"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -110.61172485351562,
-          44.58851118961441
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "marker-color": "#ff80ff",
-        "marker-size": "medium",
-        "marker-symbol": "star"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.97265625,
-          36.18167075700458
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "marker-color": "#ffff00",
-        "marker-size": "medium",
-        "marker-symbol": "star"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.10239410400389,
-          42.94461176407901
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "marker-color": "#0000ff",
-        "marker-size": "medium",
-        "marker-symbol": "star"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.36039018630981,
-          25.81298857938903
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "stroke": "#ff0000",
-        "stroke-width": 2,
-        "stroke-opacity": 1
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -81.38671875,
-            25.799891182088334
-          ],
-          [
-            -122.16796875,
-            42.87596410238256
-          ]
-        ]
-      }
-    }
-  ]
-};
+   {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"marker-color":"#009300","marker-size":"medium","marker-symbol":"star"},"geometry":{"type":"Point","coordinates":[-110.61172485351562,44.58851118961441]}},
+	   {"type":"Feature","properties":{"marker-color":"#ff80ff","marker-size":"medium","marker-symbol":"star"},"geometry":{"type":"Point","coordinates":[-111.97265625,36.18167075700458]}},{"type":"Feature","properties":{"marker-color":"#ffff00","marker-size":"medium","marker-symbol":"star"},"geometry":{"type":"Point","coordinates":[-122.10239410400389,42.94461176407901]}},{"type":"Feature","properties":{"marker-color":"#0000ff","marker-size":"medium","marker-symbol":"star"},"geometry":{"type":"Point","coordinates":[-81.36039018630981,25.81298857938903]}},{"type":"Feature","properties":{"stroke":"#ff0000","stroke-width":2,"stroke-opacity":1},"geometry":{"type":"LineString","coordinates":[[-81.38671875,25.799891182088334],[-122.16796875,42.87596410238256]]}}]}
   
 var Stamen_TonerLines = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
 	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -200,7 +116,7 @@ road.addEventListener('click dblclick', function(e) {
     <script>
     
 //Geojson map: Ajax Style
-         var myURL = "https://sayma-kh.github.io/LA458-558/ex13/map.geojson";
+         var myURL = "https://awarke1.github.io/LA558/Ex13/map.geojson";
   
         function style(feature) {
     return {
