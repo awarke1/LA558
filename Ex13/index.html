@@ -72,47 +72,6 @@
 
      <div id='map'></div>
     
-<script>
-  var map;
-//GEOJSON LOCAL DATA
-var path = {
-   {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"marker-color":"#009300","marker-size":"medium","marker-symbol":"star"},"geometry":{"type":"Point","coordinates":[-110.61172485351562,44.58851118961441]}},
-	   {"type":"Feature","properties":{"marker-color":"#ff80ff","marker-size":"medium","marker-symbol":"star"},"geometry":{"type":"Point","coordinates":[-111.97265625,36.18167075700458]}},{"type":"Feature","properties":{"marker-color":"#ffff00","marker-size":"medium","marker-symbol":"star"},"geometry":{"type":"Point","coordinates":[-122.10239410400389,42.94461176407901]}},{"type":"Feature","properties":{"marker-color":"#0000ff","marker-size":"medium","marker-symbol":"star"},"geometry":{"type":"Point","coordinates":[-81.36039018630981,25.81298857938903]}},{"type":"Feature","properties":{"stroke":"#ff0000","stroke-width":2,"stroke-opacity":1},"geometry":{"type":"LineString","coordinates":[[-81.38671875,25.799891182088334],[-122.16796875,42.87596410238256]]}}]}
-  
-var Stamen_TonerLines = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
-	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	subdomains: 'abcd',
-	minZoom: 0,
-	maxZoom: 20,
-	ext: 'png'
-});
-//MAKING THE MAP
-map = L.map('map', {
-  center: new L.LatLng(41, -100),
-  zoom: 4,
-  layers: [Stamen_TonerLines]
-});
-//colors to style line segment based on distance property
-function getColor(distance) {
-            return distance > 10 ? 'red' :
-                   distance > 8  ? 'orange' :
-                   distance > 5  ? 'green' :
-                              'yellow';
-            }
-//Style line and call getColor Function
-function style(feature) {
-            return {
-                weight: 8,
-                opacity: 1,
-                color: getColor(feature.properties.distance),
-            };
-        }
-var road = L.geoJson(path, {style: style}).addTo(map);
-road.addEventListener('click dblclick', function(e) {
-            alert(e.layer.feature.properties.distance)
-});
-    </script> 
-    
     <script>
     
 //Geojson map: Ajax Style
