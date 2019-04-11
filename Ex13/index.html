@@ -71,10 +71,18 @@
     <br>
 
      <div id='map'></div>
-    {
-  "type": "FeatureCollection",
-  "features": [
-    {
+	
+	<script>
+		var map;
+		
+		//geojson local data
+		
+		var path = {
+			
+  	"type": "FeatureCollection",
+  	"features": [
+    	{
+		
       "type": "Feature",
       "properties": {
         "marker-color": "#009300",
@@ -156,7 +164,9 @@
       }
     }
   ]
-}
+};
+	</script>
+	
     <script>
     
 //Geojson map: Ajax Style
