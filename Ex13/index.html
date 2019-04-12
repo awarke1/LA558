@@ -185,7 +185,25 @@ var baseMaps = {
 };
 L.control.layers(baseMaps).addTo(map);
 	
-		var road = L.geoJson(path, {style: style}).addTo(map);
+		//colors to style line segment based on distance property
+function getColor(marker-symbol) {
+            return marker-symbol = star ? 'red' :
+                   marker-symbol =star  ? 'orange' :
+                   marker-symbol =star  ? 'green' :
+                              'yellow';
+            }
+//Style line and call getColor Function
+function style(feature) {
+            return {
+                weight: 8,
+                opacity: 1,
+                color: getColor(feature.properties.marker-symbol),
+            };
+        }
+var road = L.geoJson(path, {style: style}).addTo(map);
+road.addEventListener('click dblclick', function(e) {
+            alert(e.layer.feature.properties.marker-symbol)
+});
 
 	</script>
 	
