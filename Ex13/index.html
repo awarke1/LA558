@@ -188,28 +188,10 @@ L.control.layers(baseMaps).addTo(map);
 	//Geojson map: Ajax Style
          var myURL = "https://awarke1.github.io/LA558/Ex13/map.geojson";
 	
-	$.each.(JSON.parse(smalltowns), function (idx,obj)
+	$.each.(JSON.parse(points(1)), function (idx,obj)
 	{
 	var marker = L.marker([obj.latitude, obj.longitude],
 	});
-    </script>
-    <script>
-    
-    //Markers
-    
-    L.marker([44, -110]).addTo(map)
-            .bindPopup("Rocky Mountains, Colorado")
-            .openPopup();
-    L.marker([36, -111]).addTo(map)
-            .bindPopup("Grand Canyon, Arizona")
-            .openPopup();
-    L.marker([42, -122]).addTo(map)
-            .bindPopup("Crater Lake, Oregon")
-            .openPopup();
-    L.marker([25, -81]).addTo(map)
-            .bindPopup("Everglades, Florida")
-            .openPopup();
-   
     
     </script>
     
