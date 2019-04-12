@@ -180,7 +180,8 @@ var baseMaps = {
     "Aerial": esriWorldImagery
 };
 L.control.layers(baseMaps).addTo(map);
-	console.clear();
+	
+		var road = L.geoJson(path, {style: style}).addTo(map);
 
 	</script>
 	
