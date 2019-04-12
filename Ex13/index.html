@@ -188,21 +188,26 @@ L.control.layers(baseMaps).addTo(map);
 	//Geojson map: Ajax Style
          var myURL = "https://awarke1.github.io/LA558/Ex13/map.geojson";
 
+	var geoJsonLayer = new L.GeoJSON.AJAX("https://awarke1.github.io/LA558/Ex13/map.geojson", {
+onEachFeature: function(feature, layer) {
     </script>
     <script>
     
     //Markers
     
-    L.marker([42.029627, -93.632897]).addTo(map)
+    L.marker([-110.61172485351562,
+          44.58851118961441]).addTo(map)
             .bindPopup("Ames, IA")
             .openPopup();
-    L.marker([39.738579, -104.992538]).addTo(map)
+    L.marker([111.97265625,
+          36.18167075700458]).addTo(map)
             .bindPopup("Denver, CO")
             .openPopup();
-    L.marker([40.759248, -111.897863]).addTo(map)
+    L.marker([-122.10239410400389,
+          42.94461176407901]).addTo(map)
             .bindPopup("Salt Lake City, UT")
             .openPopup();
-    L.marker([36.168673, -115.152850]).addTo(map)
+    L.marker([-81, 25]).addTo(map)
             .bindPopup("Las Vegas, NE")
             .openPopup();
    
