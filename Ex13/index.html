@@ -185,23 +185,12 @@ var baseMaps = {
 L.control.layers(baseMaps).addTo(map);
 
 	</script>
+	<script>
 	//Geojson map: Ajax Style
          var myURL = "https://awarke1.github.io/LA558/Ex13/map.geojson";
-    </script>
-    //Markers
-    
-    L.marker([44, -110]).addTo(map)
-            .bindPopup("Rocky Mountains, Colorado")
-            .openPopup();
-    L.marker([36, -111]).addTo(map)
-            .bindPopup("Grand Canyon, Arizona")
-            .openPopup();
-    L.marker([42, -122]).addTo(map)
-            .bindPopup("Crater Lake, Oregon")
-            .openPopup();
-    L.marker([25, -81]).addTo(map)
-            .bindPopup("Everglades, Florida")
-            .openPopup();
+		var geoJsonLayer = new L.GeoJSON.AJAX(myURL, {
+onEachFeature: function(feature, layer) {latitude, longitude}
+	</script>
    
 </body>
 </html>
