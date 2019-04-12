@@ -165,91 +165,27 @@
     }
   ]
 };
-	console.clear();
-
-var map;
-
-//Load in the geojson file
-myURL = "https://profseeger.github.io/LA558-2019/data/geoJSON/heatPoints.geojson";
-
-
-//Base Layers
-<script id="jsbin-javascript">
-//base map layers
-var OSM =
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-    //maxZoom: 18
+		var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 });
-var Esri_WI = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+var esriWorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 });
-var Esri_Terrain = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
-	//maxZoom: 13
-});
-//creation of map
 var map = L.map('map', {
-      center: new L.LatLng(42,-93.5),
-      zoom: 7,
-      layers: OSM
+    center: [37.6916159, -94.9964676],
+    zoom: 4,
+    layers: [osm]
 });
+// Adding controls for baselayers, overlays:
+var baseMaps = {
+    "Streets": osm,
+    "Aerial": esriWorldImagery
+};
+L.control.layers(baseMaps).addTo(map);
+	console.clear();
 
 	</script>
 	
-    <script>
     
-//Geojson map: Ajax Style
-         var myURL = "https://awarke1.github.io/LA558/Ex13/map.geojson";
-  
-        function style(feature) {
-    return {
-        stroke: false,
-        fillColor: ((feature.properties.NumStudent == 1) ? '#d73027' : 
-            (feature.properties.NumStudent == 2) ? '#d73027' :
-            (feature.properties.NumStudent == 3) ? '#d73027': '#FFFFFF' ),
-        weight: 0
-    };
-}
-          
-var geojsonLayer = new L.GeoJSON.AJAX(myURL , {
-     style: style,
-    pointToLayer: function (feature, latlng) {
-        return new L.CircleMarker(latlng, {
-            stroke: true,
-            weight: 0, //stroke weight
-            color: '#000000', //stroke color
-            opacity: 1.0, //stoke opacity
-            fillOpacity: 0.9,
-            radius: feature.properties.NumStudent *8/2,
-        });
-    },
-    onEachFeature: function (feature, layer) {
-        htmlText = "<strong>" + feature.properties.Name + "</strong>" + "<div class='centered'>" + "<img src='" + feature.properties.URLlogo + "' width='100'>" + "</div>";
-        layer.bindPopup(htmlText);
-        textForTooltip = " Ranked " + feature.properties.Rank + " Among Planning Schools!";
-		layer.bindTooltip(textForTooltip);
-    }
-}).addTo(map);
-    </script>
-    <script>
-    
-    //Markers
-    
-    L.marker([42.029627, -93.632897]).addTo(map)
-            .bindPopup("Ames, IA")
-            .openPopup();
-    L.marker([39.738579, -104.992538]).addTo(map)
-            .bindPopup("Denver, CO")
-            .openPopup();
-    L.marker([40.759248, -111.897863]).addTo(map)
-            .bindPopup("Salt Lake City, UT")
-            .openPopup();
-    L.marker([36.168673, -115.152850]).addTo(map)
-            .bindPopup("Las Vegas, NE")
-            .openPopup();
-   
-    
-    </script>
 </body>
 </html>
