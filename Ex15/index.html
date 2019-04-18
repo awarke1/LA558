@@ -26,12 +26,10 @@
 </head>
 <body>
 			 
-		<div id="mapid" style="width: 600px; height: 400px;"></div>	 
+		<div id="mapid" style="width: 600px; height: 400px;"></div>
+	
 		<script>	
-      console.clear();
-//note that http://icons.webtoolhub.com/icon-p4s2023-set.aspx  used for the green icon source.
-
-//JSON of the line
+      //1. Changed the line string coordiantes from Ames to Des Moines and the color
 var myLine = {
   "type": "FeatureCollection",
   "features": [
@@ -55,8 +53,7 @@ var myLine = {
   ]
 };
 
-
-//JSON of the Polygon
+//2. I changed the coordinates of the polygon and color of it
 var myPolygon = {
   "type": "FeatureCollection",
   "features": [
@@ -67,25 +64,24 @@ var myPolygon = {
         "type": "Polygon",
         "coordinates": [
           [
+            [-93.698616,
+              42.075490
+           ],
             [
-              -93.65861892700195,
-              41.96485119205757
+              -93.698273,
+             41.985270
+           ],
+            [
+               -93.595104,
+              41.981570
+          ],
+            [
+              -93.576050,
+             42.069175
             ],
             [
-              -93.6390495300293,
-              41.96485119205757
-            ],
-            [
-              -93.6390495300293,
-              41.97940045674709
-            ],
-            [
-              -93.65861892700195,
-              41.97940045674709
-            ],
-            [
-              -93.65861892700195,
-              41.96485119205757
+               -93.640145,
+              42.075490
             ]
           ]
         ]
@@ -93,22 +89,27 @@ var myPolygon = {
     }
   ]
 };
-
-
-
 //Calculate the length of the polyline in miles
 var length = turf.lineDistance(myLine, 'miles');
 console.log("myLine = "+ length + " miles");
-
-
-
 //calculates the area of the mPolygon in sq meters and sq miles
 var area = turf.area(myPolygon);
 	console.log(area + " sq meters");
 	console.log(area * 0.000000386102158542 + " sq miles");
 	
-
+//Chnaged the green markers coordinates and color
+var myPoint = {
+  "type": "Feature",
+  "properties": {
+    "marker-color": "000"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-93.6465, 42.0266]
+  }
+};
 //The green marker point on the map
+    //3. I chnaged the coordinates of the original and turned it to purple
 var myPoint = {
   "type": "Feature",
   "properties": {
@@ -116,12 +117,13 @@ var myPoint = {
   },
   "geometry": {
     "type": "Point",
-    "coordinates": [-93.6,42.00]  //change to 42.05 to cover blue marker and the closest white circle will change
+    "coordinates": [-93.6,42.05]  //if you change the cooridantes the purple marker will move
   }
 };
 
-
-//these are the 2 white circle markers 
+//the color of the circles changed
+   //4. I changed the coordinates of the circle markers to Ames, Ames Airport, and Urbandale.
+    
 var myPointCollection = {
   "type": "FeatureCollection",
   "features": [
@@ -132,8 +134,8 @@ var myPointCollection = {
 	  },
       "geometry": {
         "type": "Point",
-        "coordinates": [-93.6319,
-             42.0308]
+        "coordinates": [-93.6223,
+                       41.9987]
       }
     }, {
       "type": "Feature",
@@ -142,94 +144,72 @@ var myPointCollection = {
 	  },
       "geometry": {
         "type": "Point",
-        "coordinates": [-93.6250,
-            41.5868]
-      },
+        "coordinates": [-93.7122,
+              41.6267]
+      }
+    },{
+      "type": "Feature",
+      "properties": {
+		  		  id: 3
+	  },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-93.64,
+              42.04]
+      }
     }
-    ]
+  ]
 };
+//Calculating nearest distance of the green marker to the purple one
+var nearest = turf.nearest(myPoint, myPointCollection);
+var nearestID = nearest.properties.id;
+console.log(nearest.properties.id);
 
-
-
-
-//This calculation is the midpoint distance of the two white circles.
-var point1 = turf.point([-93.6319,42.0308]);
-var point2 = turf.point([-93.6250,41.5868]);
-
-var midpoint = turf.midpoint(point1, point2);
-
-
-
-
-
-
-
-
-
-
-	
-
-
-//*****************
-var mapCenter = L.latLng(41.7318, -93.6001);
-
+//5. I changed the zoom and center coordinates
+var mapCenter = L.latLng(41.791654,-93.522159);
 	
 var map = L.map('mapid').setView(mapCenter, 9);
-
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-		maxZoom: 18,
+		maxZoom: 12,
 		attribution: ''
 	}).addTo(map);
-
 var mapCenterMarker = L.marker(mapCenter).addTo(map);
-
 var myStyle = {
-    "color": "green",
+    "color": "aqua", //color change to aqua
     "weight": 3,
     "opacity": 0.65
 };
-
-
 var myPointIcon = L.icon({
 		iconUrl: 'https://profseeger.github.io/LA558/images/chartreuseMapMarker.png',
 		iconSize: [32, 32],
 		iconAnchor: [16, 32],
-		//popupAnchor: [0, -28]
+		popupAnchor: [0, -28]
 	});
-
 startPoint =  L.geoJSON(myPoint, {
 		pointToLayer: function (feature, latlng) {
 			return L.marker(latlng, {icon: myPointIcon});
 		},
 		//onEachFeature: onEachFeature
 	}).addTo(map);
-
-
 L.geoJSON(myLine, {
     style: myStyle
 }).addTo(map);
-
-
 L.geoJSON(myPolygon, {
     style: myStyle
 }).addTo(map);
-
-
-//if the ID of the item identified as being the nearest matches d, then change color of item to orange.
+//if the ID of the item identified as being the nearest matches d, then change color of item to lime.
 function getColor(d) {
-    return d == nearestID ? 'orange' :
-                'white';
+    return d == nearestID ? 'purple' :
+                'lime';
 }
-
 var geojsonMarkerOptions = {
     radius: 7,
-    //fillColor: "white",
+    fillColor: "black",
     color: "#000",
     weight: 1,
     opacity: 1,
     fillOpacity: 0.8
 };
-
 L.geoJSON(myPointCollection, {
     pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, geojsonMarkerOptions);
