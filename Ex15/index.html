@@ -5,7 +5,7 @@
 	
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Ex 15</title>
+  <title>Ex 15 - LA458</title>
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
 	
 	<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
@@ -262,15 +262,19 @@ L.geoJSON(myPointCollection, {
 	1. TIN (Triangulated Irregular Network): This uses a set of points to then make a collection of polygons. This would be helpful in a future project say if you couldn't find raster data for a contour or heat map, then you could just create the contours using this method instead.
 	
 	<br>
+			
 	2. rhumbDestination: by using this tool you can calulate the distance from a starting point. However this tool allows you to take into account a bearing angle which is useful to get a more accurate distance when taking into account that the Earth isnt flat. This would be useful if you were mapping ship routes.
 	
 	<br>
+			
 	3. Intersect: this tool finds the intersection of two ploygons which would be very useful when trying to find a shared area.
 	
 	<br>
+			
 	4. Buffer: this tool allows you to make a radius around a certain vector which is extremely helpful for regional planning. This tool is great for highlighting a certain distance by a designated area that you are working with.
 	
 	<br>
+			
 	5. radianstoLength: this tool allows you to take a measurement in radians and change it into units of length. This would be extremely useful if you had a buffer that was in radians and you wanted to know the distance in units of length to make it easier to map and show others.
 	
 	<br>
