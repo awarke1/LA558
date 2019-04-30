@@ -27,6 +27,34 @@
 	of climate change and more importantly high bycatch. This project is to help create awareness of the Leatherback's habitat 
 			so that we can be aware and make changes to solve this issue before it is too late.</p1>
 		
+		<img name="slide" id="slide" width="900" height="500" src=" "></p>
+       <script>
+//images slideshow
+           var i =0; 
+           var images = [];
+           var time = 2000;
+           
+           images [0] = "Seaturtle.jpg";
+           images [1] = "seaturtlebc.jpg";
+           images [2] = "stbc2.jpg";
+           images [3] = "babyseaturtle.jpg";
+           
+//function: show slides of images
+           function changeImg() {
+               document.slide.src = images [i];
+               
+               if(i < images.length - 1){
+                 i++;
+               } else {
+                   i =0;
+               }
+            setTimeout("changeImg()", time);
+           }
+           
+           window.onload = changeImg;
+        </script> 
+    <br> <br>
+	
 	<!--Bulidng Chart A-->	
 <div id="chartA" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
 
