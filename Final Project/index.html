@@ -17,8 +17,8 @@
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- importing AJAX plugin  -->
     <script src="https://indicator.extension.iastate.edu/classes/leaflet-ajax-gh-pages/dist/leaflet.ajax.min.js"></script>
-       <script src="https://awarke1.github.io/LA558/Ex13/map.geojson"></script> 
-    <script src="https://awarke1.github.io/LA558/Ex13/mapp.geojson"></script> 
+       <script src="https://awarke1.github.io/LA558/Final%20Project/map.geojson"></script> 
+    <script src="https://awarke1.github.io/LA558/Final%20Project/mapp.geojson"></script> 
        
 
 	<style>
@@ -184,6 +184,12 @@ Highcharts.chart('chartB', {
     }]
 });
 </script>
+	<script>
+	//Geojson map: Ajax Style
+         var myURL = "https://awarke1.github.io/LA558/Final%20Project/map.geojson";
+		var geoJsonLayer = new L.GeoJSON.AJAX(myURL, {
+onEachFeature: function(feature, layer) {latitude, longitude}
+	</script>
 		
 </body>
 </html>
