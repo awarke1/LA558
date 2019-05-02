@@ -210,8 +210,16 @@ L.control.layers(baseMaps).addTo(map);
 <script>
 	//Geojson map: Ajax Style
          var myURL = "https://awarke1.github.io/LA558/Final%20Project/map.geojson";
+	
 		var geoJsonLayer = new L.GeoJSON.AJAX(myURL, {
-onEachFeature: function(feature, layer) {latitude, longitude}
+onEachFeature: function(feature, layer) {latitude, longitude},
+			
+			onEachFeature: function (feature, layer) {
+        htmlText = "<strong>" + feature.properties.Name + "</strong>" + "<div class='centered'>" + "<img src='" + feature.properties.URLlogo + "' width='100'>" + "</div>";
+        layer.bindPopup(htmlText);
+    }
+}).addTo(map);
+		
 	</script>	
 </body>
 </html>
