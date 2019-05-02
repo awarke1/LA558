@@ -184,12 +184,34 @@ Highcharts.chart('chartB', {
     }]
 });
 </script>
+	<div id='map'></div>
+	
 	<script>
+		var map;
+		var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+});
+var esriWorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+var map = L.map('map', {
+    center: [37.6916159, -94.9964676],
+    zoom: 4,
+    layers: [osm]
+});
+// Adding controls for baselayers, overlays:
+var baseMaps = {
+    "Streets": osm,
+    "Aerial": esriWorldImagery
+};
+L.control.layers(baseMaps).addTo(map);
+	</script>
+	
+<script>
 	//Geojson map: Ajax Style
          var myURL = "https://awarke1.github.io/LA558/Final%20Project/map.geojson";
 		var geoJsonLayer = new L.GeoJSON.AJAX(myURL, {
 onEachFeature: function(feature, layer) {latitude, longitude}
-	</script>
-		
+	</script>	
 </body>
 </html>
