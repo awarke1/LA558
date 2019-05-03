@@ -59,10 +59,10 @@
            
            window.onload = changeImg;
         </script> 
-    <br> <br>
+  
 <p1><b> The Leatherback Seaturtle is an beautiful sea creature. Unfourtunately, like many other species, it is endangered becasue
-	of climate change and more importantly high bycatch. This project is to help create awareness of the Leatherback's habitat 
-			so that we can be aware and make changes to solve this issue before it is too late.<b></p1>
+	of climate change and more importantly high bycatch rates from commercial fishing each year. This project is to help create awareness of the Leatherback's habitat 
+	so that we can make changes to prevent extinction!<b></p1>
 		</head>
 <body>	
 	<!--Bulidng Chart A-->	
@@ -182,28 +182,74 @@ Highcharts.chart('chartB', {
     }]
 });
 </script>
-	<div id='map'></div>
-	<script>
-	console.clear();
-		var locations = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-85.75241088867188,10.722008016044914]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-110.390625,22.43134015636061]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-103.447265625,17.22475820662464]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-97.55859375,14.944784875088372]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-123.92578125,35.88905007936091]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[126.298828125,2.4601811810210052]}},{"type":"Feature","properties":{},"geometry":{"type":"LineString","coordinates":[[127.265625,2.6357885741666065],[238.18359375,36.73888412439431],[200.91796874999997,19.476950206488414],[127.79296875,1.5818302639606454],[201.4453125,3.5134210456400448],[213.3984375,5.266007882805498],[227.98828124999997,24.367113562651262],[238.18359375,34.74161249883172]]}},{"type":"Feature","properties":{},"geometry":{"type":"LineString","coordinates":[[256.81640625,18.145851771694467],[217.08984375,-6.664607562172573],[190.1953125,-23.40276490540795],[177.71484375,-27.839076094777802]]}},{"type":"Feature","properties":{"stroke":"#555555","stroke-width":2,"stroke-opacity":1},"geometry":{"type":"LineString","coordinates":[[250.48828124999997,21.94304553343818],[251.54296875,9.96885060854611],[263.3203125,-9.79567758282973],[281.77734375,-13.410994034321702]]}},{"type":"Feature","properties":{},"geometry":{"type":"LineString","coordinates":[[128.671875,3.6888551431470478],[152.05078125,5.965753671065536],[164.00390625,-3.688855143147035],[168.3984375,-18.646245142670598],[158.203125,-37.020098201368114],[150.99609375,-41.77131167976406]]}},{"type":"Feature","properties":{},"geometry":{"type":"LineString","coordinates":[[127.96875,4.565473550710278],[143.7890625,22.268764039073968],[162.0703125,49.83798245308484]]}},{"type":"Feature","properties":{},"geometry":{"type":"LineString","coordinates":[[131.8359375,5.61598581915534],[146.6015625,15.623036831528264],[130.78125,20.96143961409684],[115.6640625,14.604847155053898]]}},{"type":"Feature","properties":{},"geometry":{"type":"LineString","coordinates":[[256.9921875,16.97274101999902],[225.35156249999997,-13.581920900545844],[187.03125,-41.244772343082076]]}}]};
-		
-		var map = L.map('map').setView([8.7832, -124.5085], 3);
-		//Add openstreet tile layer
-		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png' {
-			    max zoom: 15
-			    }).addto(map);
-		var parsedLocations = JSON.parse(locations);
-		i = 0;
-		while (i < parsedLocations.length) {
-			var marker = L.marker([parsedLocations[i].latitude,
-					       parsedLocations[i].longitude], {
-				title: parsedLocations[i].title,
-				opacity: 0.9,
-				riseOnHover: true
-			}).addTo(map);
-			marker.bindPopup(parsedLocations[i].description);
-			i++;
-		}
-	</script>	
+	<div class= "map" id="map"></div>
+      
+  <script id="jsbin-javascript">
+console.clear();
+//Assign 3: layer Control: at least 2 base map, 2 overlays
+//Base Layers
+var OSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 20
+});
+var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	maxZoom: 17,
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+var MapQuestOpen_Aerial = L.tileLayer('http://oatile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg', {
+	attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency',
+	subdomains: '1234'
+});
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+// Overlay layers
+var Stamen_TonerLines = L.tileLayer('http://{s}.tile.stamen.com/toner-lines/{z}/{x}/{y}.png', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 20
+});
+//Vector and Marker Layers
+var california = L.marker([34.071297, -118.267235]).bindPopup('Los Angeles'),
+    california2 = L.marker([37.783333, -122.416667]).bindPopup('San Fransisco'),
+    nevada   = L.marker([36.265829, -115.341351]).bindPopup('Las Vegas'),
+    utah    = L.marker([40.764903, -112.131959]).bindPopup('Salt Lake City');     
+var pointD = new L.LatLng(37.783333, -122.416667);
+var pointA = new L.LatLng(34.071297, -118.267235);
+var pointB = new L.LatLng(36.265829, -115.341351);
+var pointC = new L.LatLng(40.764903, -112.131959);
+var pointList = [pointD, pointA, pointB, pointC];
+var myPolyline = new L.Polyline(pointList, {
+    color: 'red',
+    weight: 2,
+    opacity: 1,
+    smoothFactor: 1,
+    dashArray: '4,10,18,10',
+lineJoin: 'miter',
+lineCap: 'square'
+});
+var Cities = L.layerGroup([california, california2, nevada, utah]);      
+//create the map
+var map = L.map('map', {
+    		center: new L.LatLng(34.5, -111),
+    		zoom: 4,
+    		layers: [OSM, Stamen_TonerLines, Cities]
+		});
+//layer control
+		var baseMaps = {
+			"OpenStreetMap": OSM,
+			"OpenTopoMap": OpenTopoMap, "Esri_WorldImagery": Esri_WorldImagery
+    };
+       		
+		var overlayMaps = {
+			"Stamen TonerLines": Stamen_TonerLines,
+      "Cities": Cities,
+      "Polyline": myPolyline
+			
+		};
+	
+		L.control.layers(baseMaps, overlayMaps).addTo(map);
+          </script>
 </body>
 </html>
