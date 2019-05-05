@@ -83,7 +83,6 @@
 				but with pollution and high fishing rates the outlook of the Leatherback is not good.</p3>
 		<br>
 		<p4>Information courtesy of the Sea Turtle Conservancy</p4>
-		
 		<h6>The Problem:</h6>
 		<p5>There is a high rate of bycatch from commercial fishing around the globe every year.
 			Bycatch is what happens when unwanted species get caught in the nets. You can view how many species are caught 
@@ -209,6 +208,7 @@ Highcharts.chart('chartB', {
     }]
 });
 </script>
+	<br><br>
 	<h7>Fishing Methods with Highest Bycatch</h7>
 	<p6><ul>
 		<li>Longlines</li>
@@ -223,7 +223,7 @@ Highcharts.chart('chartB', {
 	
   <style id="jsbin-css">
 html, body, 
-#map { height: 500px; width: 1246px; padding: 0; margin: auto; }
+#map { height: 500px; width: 1500px; padding: 0; margin: auto; }
 .legend {
     line-height: 10px;
     color: #555;
@@ -257,24 +257,24 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
   maxZoom: 18
 }).addTo(map);
 var myPoints = [
-  ["73", 36.7783, -119.4179, "Over 20 Mgal/day"],
-  ["42", 31.9686, -99.9018, "Over 10 Mgal/day"],
-  ["70", 44.0682, -114.7420, "Over 10 Mgal/day"],
-  ["19", 35.2010, -91.8318, "Over 10 Mgal/day"],
-  ["64", 40.6331, -89.3985, "Over 10 Mgal/day"],
-  ["8.5", 39.5501, -105.7821, "Over 5 Mgal/day"],
-  ["21", 44.3148, -85.6024, "Over 5 Mgal/day"],
-  ["70", 46.8797, -110.3626, "Over 5 Mgal/day"],
-  ["46", 41.4925, -99.9018, "Over 5 Mgal/day"],
-  ["95", 37.9643, -91.8318, "Over 5 Mgal/day"],
+  ["73", 10.317, -85.86, "Many found"],
+  ["42", 23.080709, -106.836471, "Many found"],
+  ["70", 21.981639, -110.144200, "Many found"],
+  ["19", 16.250231, -100.809105, "Many found"],
+  ["64", 35.325300, -122.622782, "Some found"],
+  ["8.5", 3.947008, 130.792230, "Many found"],
+  ["21", -5.378320, 162.238006, "Many found"],
+  ["70", 36.518820, 147.750198, "Some found"],
+  ["46", -17.563312, 163.742534, "Fewer found"],
+  ["95", 26.132077, -72.541785, "Fewer found"],
 	  ];
 	  
 // color of marker
 function getColor(d) {
-  return d == 'Over 20 Mgal/ day' ? '#00008B' :
-    d == 'Over 10 Mgal/day' ? "#87CEFA" :
-    d == 'Over 5 Mgal/day' ? "#E0FFFF" :
-    "#000080"; 
+  return d == 'Many found' ? '#00008B' :
+    d == 'Some found' ? "##87CEFA" :
+    d == 'Fewer found' ? "#E0FFFF" :
+    "#000080";
 }
 for (var i = 0; i < myPoints.length; i++) {
   marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
@@ -309,7 +309,7 @@ legend.addTo(map);
 
 <!--CSS formattng the leaflet map-->
 <script id="jsbin-source-css" type="text/css">html, body, 
-#map { height: 500px; width:1246px; padding: 0; margin: auto; }
+#map { height: 500px; width:1500px; padding: 0; margin: auto; }
 .legend {
     line-height: 10px;
     color: #555;
@@ -345,23 +345,23 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
   maxZoom: 18
 }).addTo(map);
 var myPoints = [
-  ["73", 36.7783, -119.4179, "Over 20 Mgal/day"],
-  ["42", 31.9686, -99.9018, "Over 10 Mgal/day"],
-  ["70", 44.0682, -114.7420, "Over 10 Mgal/day"],
-  ["19", 35.2010, -91.8318, "Over 10 Mgal/day"],
-  ["64", 40.6331, -89.3985, "Over 10 Mgal/day"],
-  ["8.5", 39.5501, -105.7821, "Over 5 Mgal/day"],
-  ["21", 44.3148, -85.6024, "Over 5 Mgal/day"],
-  ["70", 46.8797, -110.3626, "Over 5 Mgal/day"],
-  ["46", 41.4925, -99.9018, "Over 5 Mgal/day"],
-  ["95", 37.9643, -91.8318, "Over 5 Mgal/day"],
+  ["73", 10.317, -85.86, "Many found"],
+  ["42", 23.080709, -106.836471, "Many found"],
+  ["70", 21.981639, -110.144200, "Many found"],
+  ["19", 16.250231, -100.809105, "Many found"],
+  ["64", 35.325300, -122.622782, "Some found"],
+  ["8.5", 3.947008, 130.792230, "Many found"],
+  ["21", -5.378320, 162.238006, "Many found"],
+  ["70", 36.518820, 147.750198, "Some found"],
+  ["46", -17.563312, 163.742534, "Fewer found"],
+  ["95", 26.132077, -72.541785, "Fewer found"],
 	  ];
 	
 // color of marker
 function getColor(d) {
-   return d == 'Over 20 Mgal/ day' ? '#00008B' :
-    d == 'Over 10 Mgal/day' ? "##87CEFA" :
-    d == 'Over 5 Mgal/day' ? "#E0FFFF" :
+   return d == 'Many found' ? '#00008B' :
+    d == 'Some found' ? "##87CEFA" :
+    d == 'Fewer found' ? "#E0FFFF" :
     "#000080";   
 }
 for (var i = 0; i < myPoints.length; i++) {
