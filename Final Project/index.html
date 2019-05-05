@@ -12,9 +12,7 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 	<!--geoJSON-->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" /> 
-<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 
        
 
@@ -23,12 +21,12 @@
 		body{background-color:paleturquoise}
 		h1{font-size: 60px; font-family: Jazz LET; font-weight: bold; text-shadow: 3px 2px grey}
 		h2{font-size: 40px; font-family: Jazz LET; font-weight: bold}
-		h3{color: mediumblue; font-size: 35px; font-family: Jazz LET; font-weight: bold; text-align: center; text-shadow: 3px 2px grey}
-		h4{color: mediumblue; font-size: 35px; font-family: Jazz LET; font-weight: bold; text-align: center; text-shadow: 3px 2px grey}
-		h5{color: mediumblue; font-size: 35px; font-family: Jazz LET; font-weight: bold; text-align: center; text-shadow: 3px 2px grey}
-		p1{color: tan; font-size: 22px; font-family: georgia; text-align:center}
-		p2{color: tan; font-size: 22px; font-family: georgia;}
-		p3{color: tan; font-size: 22px; font-family: georgia; text-align:center}
+		h3{color: coral; font-size: 35px; font-family: Jazz LET; font-weight: bold; text-align: center; text-shadow: 3px 2px grey}
+		h4{color: coral; font-size: 35px; font-family: Jazz LET; font-weight: bold; text-align: center; text-shadow: 3px 2px grey}
+		h5{color: coral; font-size: 35px; font-family: Jazz LET; font-weight: bold; text-align: center; text-shadow: 3px 2px grey}
+		p1{color: royalblue; font-size: 22px; font-family: georgia; text-align:center}
+		p2{color: royalblue; font-size: 22px; font-family: georgia;}
+		p3{color: royalblue; font-size: 22px; font-family: georgia; text-align:center}
 		div{vertical-align:middle} 
 	</style>
   <header
@@ -84,7 +82,155 @@
 		
 		</head>
 	<br><br>
-<body>	
+<body>
+	<!--building the map-->
+	
+	<div id="map"></div>
+  <script id="jsbin-javascript">
+console.clear();
+var map = L.map('map').setView([42, -97], 3);
+// add an OpenStreetMap tile layer
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  maxZoom: 18
+}).addTo(map);
+var myPoints = [
+  ["73", 37.8393, -84.2700, "Over 0.5%"],
+  ["42", 38.9108, -75.5277, "< 0.5% and > 0.47%"],
+  ["70", 41.2033, -77.1945, "0.5% and > 0.47%"],
+  ["19", 40.7128, -74.0060, "0.5% and > 0.47%"],
+  ["64", 40.0583, -74.4057, "0.5% and > 0.47%"],
+  ["8.5", 30.9843, -91.9623, "0.5% and > 0.47%"],
+  ["21", 46.7296, -94.6859, "0.5% and > 0.47%"],
+  ["70", 41.8780, -93.0977, "< 0.47%"],
+  ["46", 35.2010, -91.8318, "< 0.47%"],
+  ["95", 41.6032, -73.0877, "< 0.47%"],
+];
+// color of marker
+function getColor(d) {
+  return d == 'Over 0.5%' ? '#990000' :
+    d == '< 0.5% and > 0.47%' ? "#ff0000" :
+    d == '< 0.47%' ? "#ff9933" :
+    "#ffcc66"; 
+}
+for (var i = 0; i < myPoints.length; i++) {
+  marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
+      radius: myPoints[i][0] / 10 + 5,
+      fillColor: getColor(myPoints[i][3]),
+      color: "#000",
+      weight: 0,
+      opacity: 1,
+      fillOpacity: 0.9
+    })
+    .bindPopup("Category: " + myPoints[i][3]) //note there is no comma here
+    .addTo(map);
+}
+var legend = L.control({
+  position: 'bottomleft'
+	
+});
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create('div', 'info legend'),
+    cities = ['Over 0.5%', '< 0.5% and > 0.47%', '< 0.47%'],
+    labels = [''];
+  // loop through items and generate a label with a colored square for each
+  for (var i = 0; i < cities.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + getColor(cities[i]) + ' "></i> ' +
+      cities[i] + (cities ? '' + '<br>' : '');
+  }
+  return div;
+};
+legend.addTo(map);
+</script>
+
+
+<script id="jsbin-source-css" type="text/css">html, body, 
+#map { height: 480px; width:500px; padding: 0; margin: auto; }
+.legend {
+    line-height: 10px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+.info {
+    padding: 6px 8px;
+    font: 10px/20px Arial, Helvetica, sans-serif;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+/*
+box-shadow: none|h-shadow v-shadow blur spread color |inset|initial|inherit;
+https://www.w3schools.com/cssref/css3_pr_box-shadow.asp
+*/</script>
+
+<script id="jsbin-source-javascript" type="text/javascript">console.clear();
+var map = L.map('map').setView([42, -97], 3);
+// add an OpenStreetMap tile layer
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  maxZoom: 18
+}).addTo(map);
+var myPoints = [
+  ["73", 37.8393, -84.2700, "Over 0.5%"],
+  ["42", 38.9108, -75.5277, "< 0.5% and > 0.47%"],
+  ["70", 41.2033, -77.1945, "0.5% and > 0.47%"],
+  ["19", 40.7128, -74.0060, "0.5% and > 0.47%"],
+  ["64", 40.0583, -74.4057, "0.5% and > 0.47%"],
+  ["8.5", 30.9843, -91.9623, "0.5% and > 0.47%"],
+  ["21", 46.7296, -94.6859, "0.5% and > 0.47%"],
+  ["70", 41.8780, -93.0977, "< 0.47%"],
+  ["46", 35.2010, -91.8318, "< 0.47%"],
+  ["95", 41.6032, -73.0877, "< 0.47%"],
+];
+// color of marker
+function getColor(d) {
+  return d == 'Over 0.5%' ? '#990000' :
+    d == '< 0.5% and > 0.47%' ? "#ff0000" :
+    d == '< 0.47%' ? "#ff9933" :
+    "#ffcc66";  
+}
+for (var i = 0; i < myPoints.length; i++) {
+  marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
+      radius: myPoints[i][0] / 10 + 5,
+      fillColor: getColor(myPoints[i][3]),
+      color: "#000",
+      weight: 0,
+      opacity: 1,
+      fillOpacity: 0.9
+    })
+    .bindPopup("Category: " + myPoints[i][3]) 
+    .addTo(map);
+}
+var legend = L.control({
+  position: 'bottomleft'
+	
+});
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create('div', 'info legend'),
+    cities = ['Over 0.5%', '< 0.5% and > 0.47%', '< 0.47%'],
+    labels = [''];
+  // loop through items and generate a label with a colored square for each
+  for (var i = 0; i < cities.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + getColor(cities[i]) + ' "></i> ' +
+      cities[i] + (cities ? '' + '<br>' : '');
+  }
+  return div;
+};
+legend.addTo(map);</script>
+	<br><br>
+	
 	<!--Bulidng Chart A-->	
 <div id="chartA" style="width: 49%; float: left; border: 1px solid black"></div>
 
@@ -202,36 +348,5 @@ Highcharts.chart('chartB', {
     }]
 });
 </script>
-	<div class= "map" id="map"></div>
-      
-  <script id="jsbin-javascript">
-console.clear();
-	  
-//GeoJSON
-var myGeoJSON = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"marker-color":"#00ffff","marker-size":"medium","marker-symbol":"star","location":"Mexico"},"geometry":{"type":"Point","coordinates":[-111.09374999999999,21.616579336740603]}},{"type":"Feature","properties":{"marker-color":"#00ffff","marker-size":"medium","marker-symbol":"star","location":"South Mexico"},"geometry":{"type":"Point","coordinates":[-103.71093749999999,16.636191878397664]}},{"type":"Feature","properties":{"marker-color":"#00ffff","marker-size":"medium","marker-symbol":"star","location":"Costa Rica"},"geometry":{"type":"Point","coordinates":[-94.921875,11.867350911459308]}},{"type":"Feature","properties":{"marker-color":"#00ffff","marker-size":"medium","marker-symbol":"star","location":"California"},"geometry":{"type":"Point","coordinates":[-124.45312499999999,37.16031654673677]}},{"type":"Feature","properties":{"marker-color":"#008000","marker-size":"medium","marker-symbol":"star","location":"Indonesia"},"geometry":{"type":"Point","coordinates":[-245.7421875,10.487811882056695]}},{"type":"Feature","properties":{"marker-color":"#008000","marker-size":"medium","marker-symbol":"star","location":"Papua New Guinea"},"geometry":{"type":"Point","coordinates":[-213.75,0.7031073524364909]}},{"type":"Feature","properties":{"marker-color":"#008000","marker-size":"medium","marker-symbol":"star","location":"Japan"},"geometry":{"type":"Point","coordinates":[-223.9453125,28.613459424004414]}},{"type":"Feature","properties":{"marker-color":"#008000","marker-size":"medium","marker-symbol":"star","location":"Islands off of PNG"},"geometry":{"type":"Point","coordinates":[-198.6328125,-7.710991655433217]}},{"type":"Feature","properties":{"stroke":"#0080ff","stroke-width":2,"stroke-opacity":1},"geometry":{"type":"LineString","coordinates":[[-198.28125,-8.754794702435618],[-134.296875,-7.01366792756663],[-112.5,22.268764039073968]]}},{"type":"Feature","properties":{"stroke":"#0000ff","stroke-width":2,"stroke-opacity":1},"geometry":{"type":"LineString","coordinates":[[-212.34375,0.7031073524364909],[-140.2734375,4.214943141390651],[-96.328125,12.211180191503997]]}},{"type":"Feature","properties":{"stroke":"#ff8040","stroke-width":2,"stroke-opacity":1},"geometry":{"type":"LineString","coordinates":[[-223.59375,27.68352808378776],[-230.2734375,4.915832801313164],[-215.5078125,0.3515602939922709]]}},{"type":"Feature","properties":{"stroke":"#ff0000","stroke-width":2,"stroke-opacity":1},"geometry":{"type":"LineString","coordinates":[[-242.57812500000003,10.833305983642491],[-226.40625,27.68352808378776]]}},{"type":"Feature","properties":{"stroke":"#ffff80","stroke-width":2,"stroke-opacity":1},"geometry":{"type":"LineString","coordinates":[[-222.5390625,28.92163128242129],[-200.7421875,-5.9657536710655235]]}},{"type":"Feature","properties":{"stroke":"#ff0000","stroke-width":2,"stroke-opacity":1},"geometry":{"type":"LineString","coordinates":[[-221.48437499999997,27.68352808378776],[-151.875,40.44694705960048],[-125.5078125,37.16031654673677]]}},{"type":"Feature","properties":{"stroke":"#ff0000","stroke-width":2,"stroke-opacity":1},"geometry":{"type":"LineString","coordinates":[[-123.74999999999999,36.59788913307022],[-212.34375,3.5134210456400448]]}},{"type":"Feature","properties":{"stroke":"#ff80ff","stroke-width":2,"stroke-opacity":0.5,"fill":"#ff80ff","fill-opacity":0.5,"location":"Main Leatherback Migration Area"},"geometry":{"type":"Polygon","coordinates":[[[-232.734375,30.14512718337613],[-251.71875,5.965753671065536],[-190.546875,-26.74561038219901],[-83.671875,-4.214943141390639],[-127.96875,42.032974332441405],[-232.734375,30.14512718337613]]]}}]}
-
-//Base Layers
-var OSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-	attribution: '&copy; <a
-	href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-	maxZoom: 18
-}).addTo(map);
-
-	  //Create the map
-	  var map = L.map('map', {
-		  center: new L.LatLng(42.0908, -93.6208),
-		  zoom: 3,
-		  layers: [OSM]
-	  }).addTo(map);
-	  
-//style for GeoJSON
-	  var myStyle = {
-		  "color": "#ff7800",
-		  "weight": 5,
-		  "opacity": 0.65,
-	  };
-	  L.geoJSON(myGeoJSON, {
-		  style: myStyle,
-	  }).addTo(map);
-	</script>
+	</body
 	  </html>
