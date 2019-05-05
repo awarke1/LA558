@@ -91,9 +91,37 @@
 		</head>
 	<br><br>
 <body>
-	<!--building the map-->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 	
-	<div id="map"></div>
+	<!--now I am adding in the leaflet map with GeoJson-->
+	
+  <style id="jsbin-css">
+html, body, 
+#map { height: 480px; width: 500px; padding: 0; margin: auto; }
+.legend {
+    line-height: 10px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+.info {
+    padding: 6px 8px;
+    font: 10px/20px Arial, Helvetica, sans-serif;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+</style>
+<div id="map"></div>
   <script id="jsbin-javascript">
 console.clear();
 var map = L.map('map').setView([42, -97], 3);
@@ -103,23 +131,24 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
   maxZoom: 18
 }).addTo(map);
 var myPoints = [
-  ["73", 37.8393, -84.2700, "Over 0.5%"],
-  ["42", 38.9108, -75.5277, "< 0.5% and > 0.47%"],
-  ["70", 41.2033, -77.1945, "0.5% and > 0.47%"],
-  ["19", 40.7128, -74.0060, "0.5% and > 0.47%"],
-  ["64", 40.0583, -74.4057, "0.5% and > 0.47%"],
-  ["8.5", 30.9843, -91.9623, "0.5% and > 0.47%"],
-  ["21", 46.7296, -94.6859, "0.5% and > 0.47%"],
-  ["70", 41.8780, -93.0977, "< 0.47%"],
-  ["46", 35.2010, -91.8318, "< 0.47%"],
-  ["95", 41.6032, -73.0877, "< 0.47%"],
-];
+  ["73", 36.7783, -119.4179, "Over 20 Mgal/day"],
+  ["42", 31.9686, -99.9018, "Over 10 Mgal/day"],
+  ["70", 44.0682, -114.7420, "Over 10 Mgal/day"],
+  ["19", 35.2010, -91.8318, "Over 10 Mgal/day"],
+  ["64", 40.6331, -89.3985, "Over 10 Mgal/day"],
+  ["8.5", 39.5501, -105.7821, "Over 5 Mgal/day"],
+  ["21", 44.3148, -85.6024, "Over 5 Mgal/day"],
+  ["70", 46.8797, -110.3626, "Over 5 Mgal/day"],
+  ["46", 41.4925, -99.9018, "Over 5 Mgal/day"],
+  ["95", 37.9643, -91.8318, "Over 5 Mgal/day"],
+	  ];
+	  
 // color of marker
 function getColor(d) {
-  return d == 'Over 0.5%' ? '#990000' :
-    d == '< 0.5% and > 0.47%' ? "#ff0000" :
-    d == '< 0.47%' ? "#ff9933" :
-    "#ffcc66"; 
+  return d == 'Over 20 Mgal/ day' ? '#00008B' :
+    d == 'Over 10 Mgal/day' ? "#87CEFA" :
+    d == 'Over 5 Mgal/day' ? "#E0FFFF" :
+    "#000080"; 
 }
 for (var i = 0; i < myPoints.length; i++) {
   marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
@@ -139,7 +168,7 @@ var legend = L.control({
 });
 legend.onAdd = function(map) {
   var div = L.DomUtil.create('div', 'info legend'),
-    cities = ['Over 0.5%', '< 0.5% and > 0.47%', '< 0.47%'],
+    cities = ['Over 20 Mgal/day', 'Over 10 Mgal/day', 'Over 5 Mgal/day'],
     labels = [''];
   // loop through items and generate a label with a colored square for each
   for (var i = 0; i < cities.length; i++) {
@@ -152,7 +181,7 @@ legend.onAdd = function(map) {
 legend.addTo(map);
 </script>
 
-
+<!--CSS formattng the leaflet map-->
 <script id="jsbin-source-css" type="text/css">html, body, 
 #map { height: 480px; width:500px; padding: 0; margin: auto; }
 .legend {
@@ -190,23 +219,24 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
   maxZoom: 18
 }).addTo(map);
 var myPoints = [
-  ["73", 37.8393, -84.2700, "Over 0.5%"],
-  ["42", 38.9108, -75.5277, "< 0.5% and > 0.47%"],
-  ["70", 41.2033, -77.1945, "0.5% and > 0.47%"],
-  ["19", 40.7128, -74.0060, "0.5% and > 0.47%"],
-  ["64", 40.0583, -74.4057, "0.5% and > 0.47%"],
-  ["8.5", 30.9843, -91.9623, "0.5% and > 0.47%"],
-  ["21", 46.7296, -94.6859, "0.5% and > 0.47%"],
-  ["70", 41.8780, -93.0977, "< 0.47%"],
-  ["46", 35.2010, -91.8318, "< 0.47%"],
-  ["95", 41.6032, -73.0877, "< 0.47%"],
-];
+  ["73", 36.7783, -119.4179, "Over 20 Mgal/day"],
+  ["42", 31.9686, -99.9018, "Over 10 Mgal/day"],
+  ["70", 44.0682, -114.7420, "Over 10 Mgal/day"],
+  ["19", 35.2010, -91.8318, "Over 10 Mgal/day"],
+  ["64", 40.6331, -89.3985, "Over 10 Mgal/day"],
+  ["8.5", 39.5501, -105.7821, "Over 5 Mgal/day"],
+  ["21", 44.3148, -85.6024, "Over 5 Mgal/day"],
+  ["70", 46.8797, -110.3626, "Over 5 Mgal/day"],
+  ["46", 41.4925, -99.9018, "Over 5 Mgal/day"],
+  ["95", 37.9643, -91.8318, "Over 5 Mgal/day"],
+	  ];
+	
 // color of marker
 function getColor(d) {
-  return d == 'Over 0.5%' ? '#990000' :
-    d == '< 0.5% and > 0.47%' ? "#ff0000" :
-    d == '< 0.47%' ? "#ff9933" :
-    "#ffcc66";  
+   return d == 'Over 20 Mgal/ day' ? '#00008B' :
+    d == 'Over 10 Mgal/day' ? "##87CEFA" :
+    d == 'Over 5 Mgal/day' ? "#E0FFFF" :
+    "#000080";   
 }
 for (var i = 0; i < myPoints.length; i++) {
   marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
@@ -226,7 +256,7 @@ var legend = L.control({
 });
 legend.onAdd = function(map) {
   var div = L.DomUtil.create('div', 'info legend'),
-    cities = ['Over 0.5%', '< 0.5% and > 0.47%', '< 0.47%'],
+    cities = ['Over 20 Mgal/day', 'Over 10 Mgal/day', 'Over 5 Mgal/day'],
     labels = [''];
   // loop through items and generate a label with a colored square for each
   for (var i = 0; i < cities.length; i++) {
@@ -236,7 +266,8 @@ legend.onAdd = function(map) {
   }
   return div;
 };
-legend.addTo(map);</script>
+legend.addTo(map);
+	  </script>
 	
 	<br><br>
 	
