@@ -4,6 +4,7 @@
 <title>FinalP</title>
 	
 	<!--Here are all the links I used-->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
@@ -11,10 +12,6 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
-	<!--geoJSON-->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-
-       
 
 	<style>
 		header {padding: 0.5em;color: mediumblue; font-size: 30px; background-color: bisque; clear: none; text-align: center; justify-content: left}
@@ -231,5 +228,125 @@ legend.onAdd = function(map) {
   return div;
 };
 legend.addTo(map);</script>
+	
+	<br><br>
+	
+	<!--Bulidng Chart A-->	
+<div id="chartA" style="width: 49%; float: left; border: 1px solid black"></div>
+
+<script id="jsbin-javascript">
+Highcharts.chart('chartA', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Number of Species Caught from Global Bycatch Each Year'
+    },
+    subtitle: {
+        text: 'Source: WWF - Fish Forward'
+    },
+    xAxis: {
+        type: 'category',
+        labels: {
+            rotation: -45,
+            style: {
+                fontSize: '10px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Number of species (thousand)'
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    tooltip: {
+        pointFormat: 'number of species <b>{point.y:.1f} thousand</b>'
+    },
+    series: [{
+        name: 'Species',
+        data: [
+            ['Small Whales & Dolphins', 300000],
+            ['Loggerhead & Leatherback Sea Turtles', 250000],
+            ['Sea Birds', 300000],
+            
+        ],
+        dataLabels: {
+            enabled: true,
+            rotation: -90,
+            color: '#FFFFFF',
+            align: 'right',
+            format: '{point.y:.1f}', // one decimal
+            y: 10, // 10 pixels down from the top
+            style: {
+                fontSize: '13px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    }]
+});
+</script>	
+		
+<!---Chart B start--->
+<div id="chartB" style="width: 49%; float: right; border: 1px solid black"></div>
+<script id="jsbin-javascript">
+// Radialize the colors
+Highcharts.setOptions({
+    colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
+        return {
+            radialGradient: {
+                cx: 0.5,
+                cy: 0.3,
+                r: 0.7
+            },
+            stops: [
+                [0, color],
+                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+            ]
+        };
+    })
+});
+
+// Build the chart
+Highcharts.chart('chartB', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Percent of WorldWide Fish Catch That is ByCatch'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                },
+                connectorColor: 'silver'
+            }
+        }
+    },
+    series: [{
+        name: 'Share',
+        data: [
+            { name: 'Fish', y: 57000000 },
+            { name: 'Bycatch', y: 38000000 },
+        ]
+    }]
+});
+</script>
 	</body
 	  </html>
