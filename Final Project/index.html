@@ -27,7 +27,7 @@
 		p2{color: royalblue; font-size: 22px; font-family: georgia;}
 		p3{color: royalblue; font-size: 22px; font-family: georgia; text-align:center}
 		p4{color: grey; font-size:10px; font-family: georgia}
-		p5{color: red; font-size: 22px; font-family: georgia; text-align:center}
+		p5{color: red; font-size: 22px; font-family: georgia}
 		p6{color: royalblue; font-size: 22px; font-family: georgia}
 		div{vertical-align:middle} 
 	</style>
@@ -208,7 +208,9 @@ Highcharts.chart('chartB', {
     }]
 });
 </script>
+	
 	<br><br>
+	
 	<h7>Fishing Methods with Highest Bycatch</h7>
 	<p6><ul>
 		<li>Longlines</li>
@@ -294,7 +296,7 @@ var legend = L.control({
 });
 legend.onAdd = function(map) {
   var div = L.DomUtil.create('div', 'info legend'),
-    cities = ['Over 20 Mgal/day', 'Over 10 Mgal/day', 'Over 5 Mgal/day'],
+    cities = ['Many found', 'Some found', 'Fewer found'],
     labels = [''];
   // loop through items and generate a label with a colored square for each
   for (var i = 0; i < cities.length; i++) {
