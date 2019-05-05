@@ -21,9 +21,9 @@
 		body{background-color:paleturquoise}
 		h1{font-size: 60px; font-family: Jazz LET; font-weight: bold; text-shadow: 3px 2px grey}
 		h2{font-size: 40px; font-family: Jazz LET; font-weight: bold}
-		h3{color: coral; font-size: 35px; font-family: Jazz LET; font-weight: bold; text-align: center; text-shadow: 3px 2px grey}
-		h4{color: coral; font-size: 35px; font-family: Jazz LET; font-weight: bold; text-align: center; text-shadow: 3px 2px grey}
-		h5{color: coral; font-size: 35px; font-family: Jazz LET; font-weight: bold; text-align: center; text-shadow: 3px 2px grey}
+		h3{color: tan; font-size: 35px; font-family: Jazz LET; font-weight: bold; text-align: center; text-shadow: 3px 2px grey}
+		h4{color: tan; font-size: 35px; font-family: Jazz LET; font-weight: bold; text-align: center; text-shadow: 3px 2px grey}
+		h5{color: tan; font-size: 35px; font-family: Jazz LET; font-weight: bold; text-align: center; text-shadow: 3px 2px grey}
 		p1{color: royalblue; font-size: 22px; font-family: georgia; text-align:center}
 		p2{color: royalblue; font-size: 22px; font-family: georgia;}
 		p3{color: royalblue; font-size: 22px; font-family: georgia; text-align:center}
@@ -80,128 +80,11 @@
 			<h5>How Many are Left?</h5>
 			<p3> Currently there is an estimated population of 35,000 nesting females. They were listed endangered by the U.S in 1970,
 				but with pollution and high fishing rates the outlook of the Leatherback is not good.</p3>
+		<br>
 		<p4>Information courtesy of the Sea Turtle Conservancy</p4>
 		</head>
 	<br><br>
 <body>
-	<!--Bulidng Chart A-->	
-<div id="chartA" style="width: 49%; float: left; border: 1px solid black"></div>
-
-<script id="jsbin-javascript">
-Highcharts.chart('chartA', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Number of Species Caught from Global Bycatch Each Year'
-    },
-    subtitle: {
-        text: 'Source: WWF - Fish Forward'
-    },
-    xAxis: {
-        type: 'category',
-        labels: {
-            rotation: -45,
-            style: {
-                fontSize: '10px',
-                fontFamily: 'Verdana, sans-serif'
-            }
-        }
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'Number of species (thousand)'
-        }
-    },
-    legend: {
-        enabled: false
-    },
-    tooltip: {
-        pointFormat: 'number of species <b>{point.y:.1f} thousand</b>'
-    },
-    series: [{
-        name: 'Species',
-        data: [
-            ['Small Whales & Dolphins', 300000],
-            ['Loggerhead & Leatherback Sea Turtles', 250000],
-            ['Sea Birds', 300000],
-            
-        ],
-        dataLabels: {
-            enabled: true,
-            rotation: -90,
-            color: '#FFFFFF',
-            align: 'right',
-            format: '{point.y:.1f}', // one decimal
-            y: 10, // 10 pixels down from the top
-            style: {
-                fontSize: '13px',
-                fontFamily: 'Verdana, sans-serif'
-            }
-        }
-    }]
-});
-</script>	
-		
-<!---Chart B start--->
-<div id="chartB" style="width: 49%; float: right; border: 1px solid black"></div>
-<script id="jsbin-javascript">
-// Radialize the colors
-Highcharts.setOptions({
-    colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
-        return {
-            radialGradient: {
-                cx: 0.5,
-                cy: 0.3,
-                r: 0.7
-            },
-            stops: [
-                [0, color],
-                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-            ]
-        };
-    })
-});
-
-// Build the chart
-Highcharts.chart('chartB', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-    },
-    title: {
-        text: 'Percent of WorldWide Fish Catch That is ByCatch'
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                style: {
-                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                },
-                connectorColor: 'silver'
-            }
-        }
-    },
-    series: [{
-        name: 'Share',
-        data: [
-            { name: 'Fish', y: 57000000 },
-            { name: 'Bycatch', y: 38000000 },
-        ]
-    }]
-});
-</script>
-	<br><br>
 	<!--building the map-->
 	
 	<div id="map"></div>
